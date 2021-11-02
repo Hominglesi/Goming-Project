@@ -12,10 +12,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     bool hideArea = true;
 
+    ProjectileSpawner spawner;
+
     // Start is called before the first frame update
     void Start()
     {
         if (hideArea) playArea.GetComponent<Image>().color = new Color(0, 0, 0, 0);
+        spawner = GetComponent<ProjectileSpawner>();
     }
 
     // Update is called once per frame
@@ -27,7 +30,12 @@ public class PlayerController : MonoBehaviour
             var worldPos = Camera.main.ScreenToWorldPoint(mousePos);
             transform.position = GameHelper.NormalizeVector3(worldPos);
         }
-        Debug.Log(GameHelper.GetPlayer().transform.position);
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            Debug.Log("aa");
+            spawner.Spawn(new PBasicProjectile());
+        }
     }
 
     bool IsMouseOverPlayArea(Vector3 mousePos)

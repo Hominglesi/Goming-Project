@@ -10,6 +10,6 @@ public class ProjectileLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += GameHelper.NormalizeVector3(Direction * Speed);
+        transform.position += GameHelper.NormalizeVector3(Direction * Speed * Time.deltaTime);
     }
 }
