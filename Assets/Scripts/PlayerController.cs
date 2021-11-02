@@ -21,13 +21,13 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var mousePos = NormalizeVector3(Input.mousePosition);
+        var mousePos = GameHelper.NormalizeVector3(Input.mousePosition);
         if (IsMouseOverPlayArea(mousePos))
         {
             var worldPos = Camera.main.ScreenToWorldPoint(mousePos);
-            transform.position = NormalizeVector3(worldPos);
+            transform.position = GameHelper.NormalizeVector3(worldPos);
         }
-        
+        Debug.Log(GameHelper.GetPlayer().transform.position);
     }
 
     bool IsMouseOverPlayArea(Vector3 mousePos)
@@ -44,10 +44,5 @@ public class PlayerController : MonoBehaviour
         }
         return false;
 
-    }
-
-    Vector3 NormalizeVector3(Vector3 input)
-    {
-        return new Vector3(input.x, input.y, 0);
     }
 }
