@@ -11,22 +11,19 @@ public class PSpreadProjectile :IProjectilePattern
     }
     public void Spawn(Vector2 position)
     {
-        SpreadProjectile(30,40f,position);
+        SpreadProjectile(30,10f,position);
     }
     public void SpreadProjectile(int Bullets,float speed, Vector2 position)
     {
-        float range,temp;
-        range=360/Bullets;
-        temp = 360 / Bullets;
         for (int i = 0; i < Bullets; i++)
         {
-            if (range <= 360) range=range - 360;
+            float range= i*(360 / Bullets);
+            if (range >= 360) range=range - 360;
             var projectile = GameObject.Instantiate(Prefab);
             projectile.transform.position = position;
             var projectileLogic = projectile.GetComponent<ProjectileLogic>();
             projectileLogic.Direction = GameHelper.DirectionFromRotation(range);
             projectileLogic.Speed = speed;
-            range = range + temp;
         }
     }
 }
