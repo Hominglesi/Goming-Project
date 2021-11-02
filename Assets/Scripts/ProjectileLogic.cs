@@ -23,11 +23,11 @@ public class ProjectileLogic : MonoBehaviour
     bool CheckOffScreen()
     {
         var pos = transform.position;
-        float leeway = 15;
+        float leeway = 0.5f;
         if (pos.x + leeway < PlayfieldBounds.x) return true;
-        if (pos.y + leeway < PlayfieldBounds.y) return true;
+        if (pos.y - leeway > PlayfieldBounds.y) return true;
         if (pos.x - leeway > PlayfieldBounds.z) return true;
-        if (pos.y - leeway > PlayfieldBounds.w) return true;
+        if (pos.y + leeway < PlayfieldBounds.w) return true;
         return false;
     }
 }
