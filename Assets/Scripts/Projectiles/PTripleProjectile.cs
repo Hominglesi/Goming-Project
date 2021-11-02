@@ -12,7 +12,6 @@ public class PTripleProjectile : IProjectilePattern
     }
     public void Spawn(Vector2 position)
     {
-
         var projectile1 = GameObject.Instantiate(Prefab);
         var projectile2 = GameObject.Instantiate(Prefab);
         var projectile3 = GameObject.Instantiate(Prefab);
@@ -24,9 +23,9 @@ public class PTripleProjectile : IProjectilePattern
         var projectileLogic3 = projectile3.GetComponent<ProjectileLogic>();
         projectileLogic1.Direction = GameHelper.DirectionFromRotation(90);
         projectileLogic1.Speed = 10f;
-        projectileLogic2.Direction = GameHelper.DirectionFromRotation(80);
+        projectileLogic2.Direction = GameHelper.DirectionFromRotation(85);
         projectileLogic2.Speed = 10f;
-        projectileLogic3.Direction = GameHelper.DirectionFromRotation(100);
+        projectileLogic3.Direction = GameHelper.DirectionFromRotation(95);
         projectileLogic3.Speed = 10f;
     }
 }

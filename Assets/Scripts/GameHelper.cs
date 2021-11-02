@@ -17,4 +17,5 @@ public static class GameHelper
     { 
       return new Vector3(Mathf.Cos(angle*(Mathf.PI/180)), Mathf.Sin(angle * (Mathf.PI / 180)),0);
     }
+    
 }
