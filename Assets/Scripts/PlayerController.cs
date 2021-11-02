@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
             transform.position = GameHelper.NormalizeVector3(worldPos);
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             Debug.Log("aa");
             spawner.Spawn(new PSpreadProjectile());
