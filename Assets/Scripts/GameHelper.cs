@@ -9,6 +9,16 @@ public static class GameHelper
         return GameObject.FindGameObjectWithTag("Player");
     }
 
+    public static GameObject GetGlobalObject()
+    {
+        return GameObject.FindGameObjectWithTag("Global");
+    }
+
+    public static GlobalData GetGlobalData()
+    {
+        return GetGlobalObject().GetComponent<GlobalData>();
+    }
+
     public static Vector3 NormalizeVector3(Vector3 input)
     {
         return new Vector3(input.x, input.y, 0);
