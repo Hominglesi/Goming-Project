@@ -17,7 +17,7 @@ public class PBasicProjectile : IProjectilePattern
         var projectile = GameObject.Instantiate(Prefab);
         projectile.transform.position = position;
         var projectileLogic = projectile.GetComponent<ProjectileLogic>();
-        projectileLogic.Direction = new Vector3(0, 1, 0);
+        projectileLogic.Direction = new Vector3(0, 1, 0.5f);
         projectileLogic.Speed = 10f;
     }
 }

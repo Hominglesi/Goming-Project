@@ -13,4 +13,8 @@ public static class GameHelper
     {
         return new Vector3(input.x, input.y, 0);
     }
+    public static Vector3 DirectionFromRotation(float angle) 
+    { 
+      return new Vector3(Mathf.Cos(angle*(Mathf.PI/180)), Mathf.Sin(angle * (Mathf.PI / 180)),0);
+    }
 }

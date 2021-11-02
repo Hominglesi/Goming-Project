@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Debug.Log("aa");
-            spawner.Spawn(new PBasicProjectile());
+            spawner.Spawn(new PTripleProjectile());
         }
     }
 
