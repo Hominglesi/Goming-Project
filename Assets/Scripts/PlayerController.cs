@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-            spawner.Spawn(new PTripleProjectile());
+            spawner.Spawn(new ProjectileTriple());
         }
     }
 
@@ -51,5 +51,13 @@ public class PlayerController : MonoBehaviour
         }
         return false;
 
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "EnemyProjectile")
+        {
+            Debug.Log("How");
+        }
     }
 }

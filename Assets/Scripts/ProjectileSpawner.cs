@@ -7,10 +7,13 @@ public class ProjectileSpawner : MonoBehaviour
     public float Cooldown = 1f;
     bool CanShoot = true;
     public float Recharge = 0;
+    bool isPlayer;
 
     private void Start()
     {
         Recharge = Cooldown;
+        var playerComponent = GetComponent<PlayerController>();
+        isPlayer = playerComponent != null;
     }
 
     private void Update()
@@ -26,7 +29,7 @@ public class ProjectileSpawner : MonoBehaviour
     {
         if (CanShoot)
         {
-            pattern.Spawn(transform.position);
+            pattern.Spawn(transform.position, isPlayer);
             CanShoot = false;
             Recharge = 0;
         }

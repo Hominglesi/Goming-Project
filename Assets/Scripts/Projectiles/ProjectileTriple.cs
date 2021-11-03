@@ -3,21 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class PTripleProjectile : IProjectilePattern
+public class ProjectileTriple : IProjectilePattern
 {
     GameObject Prefab;
-    public PTripleProjectile()
+    public ProjectileTriple()
     {
         Prefab = Resources.Load<GameObject>("Prefabs/ProjectilePrefab");
     }
-    public void Spawn(Vector2 position)
+    public void Spawn(Vector2 position, bool isPlayer)
     {
         var projectile1 = GameObject.Instantiate(Prefab);
         var projectile2 = GameObject.Instantiate(Prefab);
         var projectile3 = GameObject.Instantiate(Prefab);
         projectile1.transform.position = position;
+        projectile1.tag = isPlayer ? "PlayerProjectile" : "EnemyProjectile";
         projectile2.transform.position = position;
+        projectile2.tag = isPlayer ? "PlayerProjectile" : "EnemyProjectile";
         projectile3.transform.position = position;
+        projectile3.tag = isPlayer ? "PlayerProjectile" : "EnemyProjectile";
         var projectileLogic1 = projectile1.GetComponent<ProjectileLogic>();
         var projectileLogic2 = projectile2.GetComponent<ProjectileLogic>();
         var projectileLogic3 = projectile3.GetComponent<ProjectileLogic>();

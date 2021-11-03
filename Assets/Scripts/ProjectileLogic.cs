@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class ProjectileLogic : MonoBehaviour
 {
+    public ProjectileOrigin Origin;
     public float Speed;
     public Vector3 Direction;
     Vector4 PlayfieldBounds;
 
+
     private void Start()
     {
-        //TODO: Jako cesto ce ovo biti callovano a kinda je resource intensive
-        PlayfieldBounds = GameHelper.GetGlobalData().PlayfieldBounds;
+        PlayfieldBounds = GameHelper.PlayfieldBounds;
     }
     
     void Update()
@@ -30,4 +31,10 @@ public class ProjectileLogic : MonoBehaviour
         if (pos.y + leeway < PlayfieldBounds.w) return true;
         return false;
     }
+}
+
+public enum ProjectileOrigin
+{
+    Player,
+    Enemy
 }
