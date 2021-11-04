@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -37,7 +38,10 @@ public class ProjectileLogic : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameHelper.GetUILogic().Projectiles--;
+        //We dont care if there is no UI because that means the game is closed
+        try{ GameHelper.GetUILogic().Projectiles--; }
+        catch (NullReferenceException) { }
+        
     }
 }
 

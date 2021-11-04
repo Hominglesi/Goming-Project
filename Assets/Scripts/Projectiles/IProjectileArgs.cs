@@ -10,5 +10,6 @@ public interface IProjectileArgs
     public Type ProjectileType { get; set; }
     public Vector2 Position { get; set; }
     public bool IsPlayer { get; set; }
+    public int Cycle { get; set; }
 }
 

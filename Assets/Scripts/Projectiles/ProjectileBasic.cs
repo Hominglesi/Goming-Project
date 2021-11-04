@@ -32,5 +32,6 @@ public class ProjectileSingleArgs : IProjectileArgs
     public float Speed { get; set; } = 10f;
     public Vector2 Position { get; set; }
     public bool IsPlayer { get; set; }
+    public int Cycle { get; set; }
 }
 

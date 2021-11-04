@@ -9,6 +9,7 @@ public class ProjectileSpawner : MonoBehaviour
     bool CanShoot = true;
     public float Recharge = 0;
     bool isPlayer;
+    int Cycle = 0;
 
     private void Start()
     {
@@ -30,14 +31,15 @@ public class ProjectileSpawner : MonoBehaviour
     {
         if (CanShoot)
         {
-            Debug.Log(args.ProjectileType);
             var projectile = Activator.CreateInstance(args.ProjectileType);
             if (args.Position == Vector2.zero) args.Position = transform.position;
             args.IsPlayer = isPlayer;
+            args.Cycle = Cycle;
             ((IProjectilePattern)projectile).Spawn(args);
 
             CanShoot = false;
             Recharge = 0;
+            Cycle++;
         }
     }
 }
