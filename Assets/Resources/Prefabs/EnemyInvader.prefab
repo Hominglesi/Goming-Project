@@ -11,11 +11,12 @@ GameObject:
   - component: {fileID: 7693061615190464986}
   - component: {fileID: 7693061615190464987}
   - component: {fileID: 7693061615190464983}
+  - component: {fileID: 8429328947821411077}
   - component: {fileID: 7693061615190464984}
   - component: {fileID: 7693061615190464980}
   - component: {fileID: 7693061615190464981}
   m_Layer: 0
-  m_Name: BasicEnemy
+  m_Name: EnemyInvader
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,6 +48,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2c5c50128b3e3846b3423d93b4202a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Speed: 0
+  currentHeight: 0
 --- !u!114 &7693061615190464983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,6 +62,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58c0e639638b8384ea503c9d825c49d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8429328947821411077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7693061615190464985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71942f2cbbe652c479901424ed692818, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Cooldown: 5
+  Recharge: 0
 --- !u!212 &7693061615190464984
 SpriteRenderer:
   m_ObjectHideFlags: 0

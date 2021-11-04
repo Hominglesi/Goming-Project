@@ -30,5 +30,6 @@ public class ProjectileTriple : IProjectilePattern
         projectileLogic2.Speed = 10f;
         projectileLogic3.Direction = GameHelper.DirectionFromRotation(95);
         projectileLogic3.Speed = 10f;
+        GameHelper.GetUILogic().Projectiles+=3;
     }
 }

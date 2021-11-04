@@ -14,11 +14,15 @@ public class ProjectileLogic : MonoBehaviour
     {
         PlayfieldBounds = GameHelper.PlayfieldBounds;
     }
-    
+
     void Update()
     {
         transform.position += GameHelper.NormalizeVector3(Direction * Speed * Time.deltaTime);
-        if (CheckOffScreen()) Destroy(gameObject);
+        if (CheckOffScreen())
+        {
+            GameHelper.GetUILogic().Projectiles--;
+            Destroy(gameObject);
+        }
     }
 
     bool CheckOffScreen()

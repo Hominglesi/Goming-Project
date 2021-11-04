@@ -12,11 +12,13 @@ public class EnemyLogic : MonoBehaviour
     {
         if (collision.gameObject.tag == "PlayerProjectile")
         {
+            GameHelper.GetUILogic().Projectiles--;
             Destroy(collision.gameObject);
 
             --Health;
             if (Health == 0)
             {
+                GameHelper.GetUILogic().EnemiesDefeated++;
                 Destroy(gameObject);
             }
         }

@@ -25,6 +25,7 @@ public class ProjectileSpread : IProjectilePattern
             var projectileLogic = projectile.GetComponent<ProjectileLogic>();
             projectileLogic.Direction = GameHelper.DirectionFromRotation(range);
             projectileLogic.Speed = speed;
+            GameHelper.GetUILogic().Projectiles++;
         }
     }
 }

@@ -14,6 +14,11 @@ public static class GameHelper
         return GameObject.FindGameObjectWithTag("Global");
     }
 
+    public static UILogic GetUILogic()
+    {
+        return GetGlobalObject().GetComponent<UILogic>();
+    }
+
     public static Vector4 __playfieldBounds;
 
     public static Vector4 PlayfieldBounds
@@ -30,7 +35,7 @@ public static class GameHelper
         }
         set
         {
-            value = __playfieldBounds;
+            __playfieldBounds = value;
         }
     }
 

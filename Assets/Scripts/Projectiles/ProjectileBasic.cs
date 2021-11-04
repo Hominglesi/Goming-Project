@@ -5,12 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class ProjectileBasic : IProjectilePattern
+public class ProjectileSingle : IProjectilePattern
 {
     GameObject Prefab;
-    public ProjectileBasic()
+    Vector2 direction;
+    public ProjectileSingle(Vector2 direction)
     {
         Prefab = Resources.Load<GameObject>("Prefabs/ProjectilePrefab");
+        this.direction = direction;
     }
     public void Spawn(Vector2 position, bool isPlayer)
     {
@@ -18,8 +20,9 @@ public class ProjectileBasic : IProjectilePattern
         projectile.transform.position = position;
         projectile.tag = isPlayer ? "PlayerProjectile" : "EnemyProjectile";
         var projectileLogic = projectile.GetComponent<ProjectileLogic>();
-        projectileLogic.Direction = new Vector3(0, 1, 0.5f);
+        projectileLogic.Direction = direction;
         projectileLogic.Speed = 10f;
+        GameHelper.GetUILogic().Projectiles++;
     }
 }
 

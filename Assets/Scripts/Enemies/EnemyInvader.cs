@@ -10,12 +10,13 @@ public class EnemyInvader : MonoBehaviour
     Vector4 PlayfieldBounds;
     EnemyState State;
     EnemyState LastState;
-    float Speed;
+    public float Speed;
     float spriteWidth;
     float spriteHeight;
     float leeway;
     [SerializeField]
     float currentHeight;
+    ProjectileSpawner spawner;
 
     private void Start()
     {
@@ -28,11 +29,15 @@ public class EnemyInvader : MonoBehaviour
         spriteHeight = coll.size.y;
         leeway = 0.2f;
         currentHeight = transform.position.y;
+        spawner = GetComponent<ProjectileSpawner>();
     }
 
     private void Update()
     {
-        if(State == EnemyState.Vertical)
+
+        spawner.Spawn(new ProjectileSingle(GameHelper.DirectionFromRotation(270)));
+
+        if (State == EnemyState.Vertical)
         {
             var dist = spriteHeight + leeway;
             transform.position += new Vector3(0, -1, 0) * Time.deltaTime * Speed;

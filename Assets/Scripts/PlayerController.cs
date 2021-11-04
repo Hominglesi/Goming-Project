@@ -57,7 +57,9 @@ public class PlayerController : MonoBehaviour
     {
         if(collision.gameObject.tag == "EnemyProjectile")
         {
-            Debug.Log("How");
+            GameHelper.GetUILogic().Projectiles--;
+            Destroy(collision.gameObject);
+            GameHelper.GetUILogic().HitsTaken++;
         }
     }
 }
