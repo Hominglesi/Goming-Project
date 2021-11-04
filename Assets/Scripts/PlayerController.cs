@@ -33,7 +33,11 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-            spawner.Spawn(new ProjectileTriple());
+            spawner.Spawn(new ProjectileMultiShotArgs()
+            {
+                AngleSpacing = 2,
+                ShotCount = 30
+            });
         }
     }
 
@@ -57,7 +61,6 @@ public class PlayerController : MonoBehaviour
     {
         if(collision.gameObject.tag == "EnemyProjectile")
         {
-            GameHelper.GetUILogic().Projectiles--;
             Destroy(collision.gameObject);
             GameHelper.GetUILogic().HitsTaken++;
         }

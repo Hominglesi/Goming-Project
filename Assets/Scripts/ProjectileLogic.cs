@@ -20,7 +20,6 @@ public class ProjectileLogic : MonoBehaviour
         transform.position += GameHelper.NormalizeVector3(Direction * Speed * Time.deltaTime);
         if (CheckOffScreen())
         {
-            GameHelper.GetUILogic().Projectiles--;
             Destroy(gameObject);
         }
     }
@@ -34,6 +33,11 @@ public class ProjectileLogic : MonoBehaviour
         if (pos.x - leeway > PlayfieldBounds.z) return true;
         if (pos.y + leeway < PlayfieldBounds.w) return true;
         return false;
+    }
+
+    private void OnDestroy()
+    {
+        GameHelper.GetUILogic().Projectiles--;
     }
 }
 

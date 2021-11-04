@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,11 +26,16 @@ public class ProjectileSpawner : MonoBehaviour
         }
     }
 
-    public void Spawn(IProjectilePattern pattern)
+    public void Spawn(IProjectileArgs args)
     {
         if (CanShoot)
         {
-            pattern.Spawn(transform.position, isPlayer);
+            Debug.Log(args.ProjectileType);
+            var projectile = Activator.CreateInstance(args.ProjectileType);
+            if (args.Position == Vector2.zero) args.Position = transform.position;
+            args.IsPlayer = isPlayer;
+            ((IProjectilePattern)projectile).Spawn(args);
+
             CanShoot = false;
             Recharge = 0;
         }

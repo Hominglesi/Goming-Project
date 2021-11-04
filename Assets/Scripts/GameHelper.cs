@@ -45,8 +45,13 @@ public static class GameHelper
     }
 
     public static Vector3 DirectionFromRotation(float angle) 
-    { 
-      return new Vector3(Mathf.Cos(angle*(Mathf.PI/180)), Mathf.Sin(angle * (Mathf.PI / 180)),0);
+    {
+        var radians = angle * (Mathf.PI / 180);
+        return new Vector3(Mathf.Cos(radians), Mathf.Sin(radians),0);
     }
-    
+    public static float RotationFromDirection(Vector3 direction)
+    {
+        var radians = Mathf.Atan2(direction.y, direction.x);
+        return radians / (Mathf.PI / 180);
+    }
 }

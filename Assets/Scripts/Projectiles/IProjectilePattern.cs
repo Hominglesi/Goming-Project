@@ -7,6 +7,6 @@ using UnityEngine;
 
 public interface IProjectilePattern
 {
-    public void Spawn(Vector2 position, bool isPlayerProjectile);
+    public void Spawn(IProjectileArgs args);
 }
 

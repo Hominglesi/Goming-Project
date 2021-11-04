@@ -34,8 +34,14 @@ public class EnemyInvader : MonoBehaviour
 
     private void Update()
     {
-
-        spawner.Spawn(new ProjectileSingle(GameHelper.DirectionFromRotation(270)));
+        spawner.Spawn(new ProjectileSingleArgs()
+        {
+            Direction = GameHelper.DirectionFromRotation(270)
+        }) ;
+        spawner.Spawn(new ProjectileSingleArgs()
+        {
+            Direction = Vector2.down
+        });
 
         if (State == EnemyState.Vertical)
         {
