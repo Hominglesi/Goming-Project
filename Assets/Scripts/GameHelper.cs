@@ -54,4 +54,9 @@ public static class GameHelper
         var radians = Mathf.Atan2(direction.y, direction.x);
         return radians / (Mathf.PI / 180);
     }
+
+    public static float GetAngleBetweenPoints(Vector2 start, Vector2 end)
+    {
+        return Mathf.Atan2(end.y - start.y, end.x - start.x) * (180 / Mathf.PI);
+    }
 }

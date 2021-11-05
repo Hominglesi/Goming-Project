@@ -33,10 +33,10 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-            spawner.Spawn(new ProjectileStaggeredSpreadArgs()
+            spawner.Spawn(new ProjectileMultiShotArgs()
             {
-                StaggerCount = 2,
-                ShotCount = 30
+                AngleSpacing = 5,
+                ShotCount = 5
             });
         }
     }

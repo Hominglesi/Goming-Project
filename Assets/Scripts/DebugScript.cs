@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DebugScript : MonoBehaviour
 {
@@ -8,15 +9,15 @@ public class DebugScript : MonoBehaviour
     void Start()
     {
         var spawner = GetComponent<EnemySpawner>();
-        spawner.SpawnPattern(new PatternInvader(30, 7));
+        spawner.SpawnPattern(new PatternRombus());
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        //Debug.Log(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            var spawner = GetComponent<EnemySpawner>();
-            spawner.PatternQueue.Clear();
+            SceneManager.LoadScene("GameScene");
         }
     }
 }

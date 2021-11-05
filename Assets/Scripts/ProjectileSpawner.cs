@@ -32,7 +32,7 @@ public class ProjectileSpawner : MonoBehaviour
         if (CanShoot)
         {
             var projectile = Activator.CreateInstance(args.ProjectileType);
-            if (args.Position == Vector2.zero) args.Position = transform.position;
+            args.Position = transform.position;
             args.IsPlayer = isPlayer;
             args.Cycle = Cycle;
             ((IProjectilePattern)projectile).Spawn(args);

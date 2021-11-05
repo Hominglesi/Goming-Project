@@ -46,7 +46,8 @@ public class UILogic : MonoBehaviour
         set
         {
             _projectiles = value;
-            ProjectilesDisplay.text = _projectiles.ToString();
+            if(ProjectilesDisplay != null)
+                ProjectilesDisplay.text = _projectiles.ToString();
         }
     }
 
