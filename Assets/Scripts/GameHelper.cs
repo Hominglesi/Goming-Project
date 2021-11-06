@@ -35,6 +35,7 @@ public static class GameHelper
         return new Vector3(input.x, input.y, 0);
     }
 
+    //TODO: Check if we can just change return type to Vector2
     public static Vector3 DirectionFromRotation(float angle) 
     {
         var radians = angle * (Mathf.PI / 180);
@@ -56,5 +57,11 @@ public static class GameHelper
         Vector3[] bounds = new Vector3[4];
         rect.GetWorldCorners(bounds);
         return new Vector4(bounds[0].x, bounds[1].y, bounds[2].x, bounds[3].y);
+    }
+
+    public static Vector2 MoveTowards(Vector2 start, Vector2 end, float speed)
+    {
+        var angle = GetAngleBetweenPoints(start, end);
+        return start + (Vector2)(DirectionFromRotation(angle) * speed * Time.deltaTime);
     }
 }

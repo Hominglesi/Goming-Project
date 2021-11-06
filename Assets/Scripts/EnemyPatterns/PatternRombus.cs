@@ -35,11 +35,21 @@ public class PatternRombus : IEnemyPattern
         {
             StaggerCount = 2,
             ShotCount = 24,
-            Speed = 4
+            Speed = 5
         };
 
-        new SpawnerRombus(projectile, Points, 2);
-        new SpawnerRombus(projectile, Points, 4);
+        var args = new EnemyPatrollerArgs()
+        {
+            MovementSpeed = 2,
+            Positions = Points,
+            MainProjectile = projectile,
+            StartPosition = 1,
+            Health = 50
+        };
+
+        EnemyPatroller.Spawn(args);
+        args.StartPosition = 3;
+        EnemyPatroller.Spawn(args);
 
         IsCompleted = true;
     }

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class EnemyInvader : MonoBehaviour
+public class EnemyInvader : EnemyLogicBase
 {
     Vector4 PlayfieldBounds;
     EnemyState State;
@@ -16,10 +16,10 @@ public class EnemyInvader : MonoBehaviour
     float leeway;
     [SerializeField]
     float currentHeight;
-    ProjectileSpawner spawner;
 
-    private void Start()
+    public override void Start()
     {
+        base.Start();
         PlayfieldBounds = GameHelper.PlayfieldBounds;
         State = EnemyState.HorizontalRight;
         LastState = EnemyState.HorizontalRight;
@@ -29,19 +29,15 @@ public class EnemyInvader : MonoBehaviour
         spriteHeight = coll.size.y;
         leeway = 0.2f;
         currentHeight = transform.position.y;
-        spawner = GetComponent<ProjectileSpawner>();
-    }
-
-    private void Update()
-    {
-        spawner.Spawn(new ProjectileSingleArgs()
-        {
-            Direction = GameHelper.DirectionFromRotation(270)
-        }) ;
-        spawner.Spawn(new ProjectileSingleArgs()
+        MainProjectile = new ProjectileSingleArgs()
         {
             Direction = Vector2.down
-        });
+        };
+    }
+
+    public override void Update()
+    {
+        base.Update();
 
         if (State == EnemyState.Vertical)
         {
