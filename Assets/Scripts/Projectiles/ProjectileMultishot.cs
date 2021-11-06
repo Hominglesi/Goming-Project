@@ -20,14 +20,9 @@ public class ProjectileMultiShot : IProjectilePattern
         for (int i = 0; i < args.ShotCount; i++)
         {
             var shotAngle = angleStart + (i * args.AngleSpacing);
-            var basicArgs = new ProjectileSingleArgs()
-            {
-                Position = args.Position,
-                IsPlayer = args.IsPlayer,
-                Speed = args.Speed,
-                Direction = GameHelper.DirectionFromRotation(shotAngle)
-            };
-            new ProjectileSingle(basicArgs);
+
+            args.Direction = GameHelper.DirectionFromRotation(shotAngle);
+            new ProjectileSingle(args);
         }
     }
 }

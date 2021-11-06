@@ -17,15 +17,8 @@ public class ProjectileStaggeredSpread : IProjectilePattern
         var angle = GameHelper.RotationFromDirection(args.Direction);
         var stage = args.Cycle % args.StaggerCount;
 
-        new ProjectileSpread(new ProjectileSpreadArgs()
-        {
-            ShotCount = args.ShotCount,
-            Position = args.Position,
-            Speed = args.Speed,
-            IsPlayer = args.IsPlayer,
-            Direction = GameHelper.DirectionFromRotation(angle + (stage * angleSlice))
-        });
-
+        args.Direction = GameHelper.DirectionFromRotation(angle + (stage * angleSlice));
+        new ProjectileSpread(args);
     }
 }
 

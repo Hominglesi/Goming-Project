@@ -17,14 +17,9 @@ public class ProjectileSpread : IProjectilePattern
         for (int i = 0; i < args.ShotCount; i++)
         {
             float shotAngle = angle + (i * spacing);
-            var basicArgs = new ProjectileSingleArgs()
-            {
-                Position = args.Position,
-                IsPlayer = args.IsPlayer,
-                Speed = args.Speed,
-                Direction = GameHelper.DirectionFromRotation(shotAngle)
-            };
-            new ProjectileSingle(basicArgs);
+
+            args.Direction = GameHelper.DirectionFromRotation(shotAngle);
+            new ProjectileSingle(args);
         }
     }
 }
