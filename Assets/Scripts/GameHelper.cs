@@ -5,19 +5,11 @@ using UnityEngine;
 public static class GameHelper
 {
     public static GameObject GetPlayer()
-    {
-        return GameObject.FindGameObjectWithTag("Player");
-    }
-
+        => GameObject.FindGameObjectWithTag("Player");
     public static GameObject GetGlobalObject()
-    {
-        return GameObject.FindGameObjectWithTag("Global");
-    }
-
+        => GameObject.FindGameObjectWithTag("Global");
     public static UILogic GetUILogic()
-    {
-        return GetGlobalObject().GetComponent<UILogic>();
-    }
+        => GetGlobalObject().GetComponent<UILogic>();
 
     public static Vector4 __playfieldBounds;
 
@@ -28,8 +20,7 @@ public static class GameHelper
             if (__playfieldBounds != Vector4.zero) return __playfieldBounds;
             else
             {
-                var globalData = GetGlobalObject().GetComponent<GlobalData>();
-                __playfieldBounds = globalData.CalculatePlayfieldBounds();
+                __playfieldBounds = CalculateRectBounds(GetUILogic().PlayfieldTransform);
                 return __playfieldBounds;
             }
         }
@@ -58,5 +49,12 @@ public static class GameHelper
     public static float GetAngleBetweenPoints(Vector2 start, Vector2 end)
     {
         return Mathf.Atan2(end.y - start.y, end.x - start.x) * (180 / Mathf.PI);
+    }
+
+    public static Vector4 CalculateRectBounds(RectTransform rect)
+    {
+        Vector3[] bounds = new Vector3[4];
+        rect.GetWorldCorners(bounds);
+        return new Vector4(bounds[0].x, bounds[1].y, bounds[2].x, bounds[3].y);
     }
 }

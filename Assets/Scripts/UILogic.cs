@@ -53,6 +53,8 @@ public class UILogic : MonoBehaviour
 
     [SerializeField]
     Text FPSDisplay;
+
+    public RectTransform PlayfieldTransform;
     private void Update()
     {
         FPSDisplay.text = ((int)(1f / Time.unscaledDeltaTime)).ToString();

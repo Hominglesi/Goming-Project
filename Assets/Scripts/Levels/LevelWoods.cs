@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 public class LevelWoods : ILevel
 {
-    public List<string> NormalEnemies { get; set; }
+    public LevelWoods()
+    {
+
+    }
 }
 

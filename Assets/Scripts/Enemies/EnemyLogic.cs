@@ -17,12 +17,11 @@ public class EnemyLogic : MonoBehaviour
         set
         {
             _projectiles = value;
-            Debug.Log(((ProjectileStaggeredSpreadArgs)_projectiles).Speed);
         }
     }
     public ProjectileSpawner spawner;
 
-    float Health = 250;
+    float Health = 100;
 
     private void Start()
     {

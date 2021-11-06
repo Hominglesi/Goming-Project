@@ -631,8 +631,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 213.56, y: 124.92999}
-  m_SizeDelta: {x: 149.79, y: 19.09}
+  m_AnchoredPosition: {x: 215.99997, y: 124.92999}
+  m_SizeDelta: {x: 154.67, y: 19.09}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1077219309
 MonoBehaviour:
@@ -1078,10 +1078,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1715166428}
-  - component: {fileID: 1715166427}
   - component: {fileID: 1715166429}
   - component: {fileID: 1715166430}
   - component: {fileID: 1715166431}
+  - component: {fileID: 1715166432}
   m_Layer: 0
   m_Name: Global
   m_TagString: Global
@@ -1089,19 +1089,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1715166427
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1715166426}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d405ae0bd7cdc1d4997d130babd96e22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayfieldTransform: {fileID: 460680515}
 --- !u!4 &1715166428
 Transform:
   m_ObjectHideFlags: 0
@@ -1156,6 +1143,19 @@ MonoBehaviour:
   EnemiesDefeatedDisplay: {fileID: 1819744245}
   ProjectilesDisplay: {fileID: 1185927498}
   FPSDisplay: {fileID: 1368113489}
+  PlayfieldTransform: {fileID: 460680515}
+--- !u!114 &1715166432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715166426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d070e727d452f294a94b8bf39ce324dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1819744244
 GameObject:
   m_ObjectHideFlags: 0
@@ -1232,8 +1232,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 123.29, y: 0}
-  m_SizeDelta: {x: 93.82, y: 19.09}
+  m_AnchoredPosition: {x: 126.69, y: 0}
+  m_SizeDelta: {x: 87.03, y: 19.09}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1837170509
 GameObject:

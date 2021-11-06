@@ -7,6 +7,6 @@ using System.Threading.Tasks;
 
 public interface ILevel
 {
-    public List<string> NormalEnemies { get; set; }
+
 }
 
