@@ -8,14 +8,14 @@ public class ProjectileLogic : MonoBehaviour
     public ProjectileOrigin Origin;
     public float Speed;
     public Vector3 Direction;
-    Vector4 PlayfieldBounds;
+    public Vector4 PlayfieldBounds;
 
     private void Start()
     {
         PlayfieldBounds = GameHelper.PlayfieldBounds;
     }
 
-    void Update()
+    public virtual void Update()
     {
         Debug.Log(transform.rotation.eulerAngles);
         transform.position += GameHelper.NormalizeVector3(Direction * Speed * Time.deltaTime);
