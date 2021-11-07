@@ -28,4 +28,17 @@ public class ProjectileSpreadArgs : ProjectileSingleArgs
 {
     public override Type ProjectileType { get; set; } = typeof(ProjectileSpread);
     public int ShotCount { get; set; } = 8;
+    public override IProjectileArgs Clone()
+    {
+        var clone = new ProjectileSpreadArgs
+        {
+            Direction = Direction,
+            Speed = Speed,
+            Position = Position,
+            IsPlayer = IsPlayer,
+            Cycle = Cycle,
+            ShotCount = ShotCount
+        };
+        return clone;
+    }
 }

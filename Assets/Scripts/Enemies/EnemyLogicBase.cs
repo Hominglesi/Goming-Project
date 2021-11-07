@@ -49,6 +49,7 @@ public class EnemyLogicBase : MonoBehaviour
             {
                 GameHelper.GetUILogic().EnemiesDefeated++;
                 Destroy(gameObject);
+                Health = 1000;
             }
         }
         
@@ -63,12 +64,23 @@ public interface IEnemyArgs
 {
     public float Health { get; set; }
     public IProjectileArgs MainProjectile { get; set; }
+    public IEnemyArgs Clone();
 }
 
 public class EnemyArgs : IEnemyArgs
 {
-    public float Health { get; set; } = 1;
+    public float Health { get; set; } = 25;
     public IProjectileArgs MainProjectile { get; set; }
+
+    public virtual IEnemyArgs Clone()
+    {
+        var clone = new EnemyArgs
+        {
+            Health = Health,
+            MainProjectile = MainProjectile
+        };
+        return clone;
+    }
 }
 
 

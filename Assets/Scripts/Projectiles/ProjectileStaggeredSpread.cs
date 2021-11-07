@@ -26,5 +26,19 @@ public class ProjectileStaggeredSpreadArgs : ProjectileSpreadArgs
 {
     public override Type ProjectileType { get; set; } = typeof(ProjectileStaggeredSpread);
     public float StaggerCount { get; set; }
+    public override IProjectileArgs Clone()
+    {
+        var clone = new ProjectileStaggeredSpreadArgs
+        {
+            Direction = Direction,
+            Speed = Speed,
+            Position = Position,
+            IsPlayer = IsPlayer,
+            Cycle = Cycle,
+            ShotCount = ShotCount,
+            StaggerCount = StaggerCount
+        };
+        return clone;
+    }
 }
 

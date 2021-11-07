@@ -16,7 +16,7 @@ public class DebugScript : MonoBehaviour
         //Debug.Log(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         if (Input.GetKeyDown(KeyCode.R))
         {
-            SceneManager.LoadScene("MenuScene");
+            SceneManager.LoadScene("LevelSelectScene");
         }
     }
 }

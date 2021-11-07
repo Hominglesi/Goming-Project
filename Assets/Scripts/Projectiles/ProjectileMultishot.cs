@@ -32,4 +32,19 @@ public class ProjectileMultiShotArgs : ProjectileSingleArgs
     public override Type ProjectileType { get; set; } = typeof(ProjectileMultiShot);
     public float AngleSpacing { get; set; } = 1;
     public float ShotCount { get; set; } = 3;
+
+    public override IProjectileArgs Clone()
+    {
+        var clone = new ProjectileMultiShotArgs
+        {
+            Direction = Direction,
+            Speed = Speed,
+            Position = Position,
+            IsPlayer = IsPlayer,
+            Cycle = Cycle,
+            AngleSpacing = AngleSpacing,
+            ShotCount = ShotCount
+        };
+        return clone;
+    }
 }

@@ -10,7 +10,6 @@ public class ProjectileLogic : MonoBehaviour
     public Vector3 Direction;
     Vector4 PlayfieldBounds;
 
-
     private void Start()
     {
         PlayfieldBounds = GameHelper.PlayfieldBounds;
@@ -18,11 +17,17 @@ public class ProjectileLogic : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(transform.rotation.eulerAngles);
         transform.position += GameHelper.NormalizeVector3(Direction * Speed * Time.deltaTime);
         if (CheckOffScreen())
         {
             Destroy(gameObject);
         }
+    }
+
+    public void SetRotation(float angle)
+    {
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90)); 
     }
 
     bool CheckOffScreen()

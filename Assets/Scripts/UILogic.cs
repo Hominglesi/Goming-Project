@@ -54,10 +54,26 @@ public class UILogic : MonoBehaviour
     [SerializeField]
     Text FPSDisplay;
 
+    [SerializeField]
+    Text DifficultyDisplay;
+
     public RectTransform PlayfieldTransform;
+
+    AudioSource audioSource;
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
+    public void PlayOof()
+    {
+        audioSource.Play(0);
+    }
     private void Update()
     {
         FPSDisplay.text = ((int)(1f / Time.unscaledDeltaTime)).ToString();
+        DifficultyDisplay.text = GlobalData.CurrentLevel.Difficulty.ToString();
     }
 
 }

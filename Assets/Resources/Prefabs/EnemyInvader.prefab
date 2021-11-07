@@ -48,6 +48,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2c5c50128b3e3846b3423d93b4202a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 0
+  spawner: {fileID: 0}
   Speed: 0
   currentHeight: 0
 --- !u!114 &7693061615190464983
@@ -62,6 +64,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58c0e639638b8384ea503c9d825c49d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 0
+  spawner: {fileID: 0}
 --- !u!114 &8429328947821411077
 MonoBehaviour:
   m_ObjectHideFlags: 0

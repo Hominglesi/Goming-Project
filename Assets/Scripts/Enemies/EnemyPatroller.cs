@@ -47,5 +47,17 @@ public class EnemyPatrollerArgs : EnemyArgs
     public Vector2[] Positions { get; set; }
     public float MovementSpeed { get; set; } = 4;
     public int StartPosition { get; set; }
+    public override IEnemyArgs Clone()
+    {
+        var clone = new EnemyPatrollerArgs
+        {
+            Health = Health,
+            MainProjectile = MainProjectile,
+            Positions = Positions,
+            MovementSpeed = MovementSpeed,
+            StartPosition = StartPosition
+        };
+        return clone;
+    }
 }
 

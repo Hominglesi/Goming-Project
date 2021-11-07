@@ -19,6 +19,7 @@ public class ProjectileSingle : IProjectilePattern
         projectile.tag = args.IsPlayer ? "PlayerProjectile" : "EnemyProjectile";
         var projectileLogic = projectile.GetComponent<ProjectileLogic>();
         projectileLogic.Direction = args.Direction;
+        projectileLogic.SetRotation(GameHelper.RotationFromDirection(args.Direction));
         projectileLogic.Speed = args.Speed;
         GameHelper.GetUILogic().Projectiles++;
     }
@@ -33,5 +34,18 @@ public class ProjectileSingleArgs : IProjectileArgs
     public Vector2 Position { get; set; }
     public bool IsPlayer { get; set; }
     public int Cycle { get; set; }
+
+    public virtual IProjectileArgs Clone() 
+    {
+        var clone = new ProjectileSingleArgs
+        {
+            Direction = Direction,
+            Speed = Speed,
+            Position = Position,
+            IsPlayer = IsPlayer,
+            Cycle = Cycle
+        };
+        return clone;
+    }
 }
 

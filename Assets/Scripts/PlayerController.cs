@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour
         if(collision.gameObject.tag == "EnemyProjectile")
         {
             Destroy(collision.gameObject);
+            GameHelper.GetUILogic().PlayOof();
             GameHelper.GetUILogic().HitsTaken++;
         }
     }

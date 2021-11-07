@@ -13,7 +13,7 @@ public class ProjectileSpawner : MonoBehaviour
 
     private void Start()
     {
-        Recharge = Cooldown;
+        Recharge = 0;
         var playerComponent = GetComponent<PlayerController>();
         isPlayer = playerComponent != null;
     }
@@ -31,6 +31,7 @@ public class ProjectileSpawner : MonoBehaviour
     {
         if (CanShoot)
         {
+            Debug.Log("shot");
             var projectile = Activator.CreateInstance(args.ProjectileType);
             args.Position = transform.position;
             args.IsPlayer = isPlayer;
