@@ -1,6 +1,8 @@
 public class ProjectileArgs
 {
-    public ProjectileType Type { get; set; }
+    public ProjectileTypes Type { get; set; }
+    public float Speed { get; set; } = 10f;
+    public int BounceAmount { get; set; } = 1;
 }
 
 public enum ProjectileTypes

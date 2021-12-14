@@ -73,7 +73,8 @@ public class UILogic : MonoBehaviour
     private void Update()
     {
         FPSDisplay.text = ((int)(1f / Time.unscaledDeltaTime)).ToString();
-        DifficultyDisplay.text = GlobalData.CurrentLevel.Difficulty.ToString();
+        //TODO: uncomment this
+        //DifficultyDisplay.text = GlobalData.CurrentLevel.Difficulty.ToString();
     }
 
 }
