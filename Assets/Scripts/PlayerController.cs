@@ -12,13 +12,27 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     bool hideArea = true;
 
-    ProjectileSpawner spawner;
+    PatternBase mainPattern;
+    ProjectileArgs mainProjectile;
 
     // Start is called before the first frame update
     void Start()
     {
         if (hideArea) playArea.GetComponent<Image>().color = new Color(0, 0, 0, 0);
-        spawner = GetComponent<ProjectileSpawner>();
+
+        mainPattern = PatternFactory.AttachComponent(gameObject, new PatternArgs()
+        {
+            Type = PatternTypes.Single,
+            Direction = Vector2.up,
+            FireRate = 5f
+        });
+
+        mainProjectile = new ProjectileArgs()
+        {
+            Type = ProjectileTypes.Bouncing,
+            Speed = 6f,
+            BounceAmount = 10000
+        };
     }
 
     // Update is called once per frame
@@ -33,11 +47,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-            spawner.Spawn(new ProjectileStaggeredSpreadArgs()
-            {
-                StaggerCount = 5,
-                ShotCount = 16
-            });
+            mainPattern.Shoot(mainProjectile);
         }
     }
 

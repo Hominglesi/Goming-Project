@@ -6,10 +6,11 @@ public static partial class ProjectileFactory
     private static GameObject straightPrefab;
     private static GameObject CreateStraight(ProjectileArgs args)
     {
-        if (straightPrefab == null) straightPrefab = Resources.Load<GameObject>(bouncingPrefabPath);
+        if (straightPrefab == null) straightPrefab = Resources.Load<GameObject>(straightPrefabPath);
 
         var obj = GameObject.Instantiate(straightPrefab);
         obj.GetComponent<ProjectileStraightLogic>().Initialize(args);
+        
         return obj;
     }
 }

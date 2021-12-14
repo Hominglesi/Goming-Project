@@ -16,8 +16,8 @@ public class ProjectileBouncingLogic : MonoBehaviour
 
     public void Initialize(ProjectileArgs args)
     {
-        //remove this 
-        Direction = Vector2.one;
+        transform.position = args.StartPosition;
+        Direction = args.Direction;
         Speed = args.Speed;
 
         BounceAmount = args.BounceAmount;
