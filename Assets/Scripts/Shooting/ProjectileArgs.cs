@@ -7,6 +7,7 @@ public class ProjectileArgs
     public int BounceAmount { get; set; } = 1;
     public Vector2 StartPosition { get; set; }
     public Vector2 Direction { get; set; }
+    public float HomingStrenght { get; set; }
 
     public ProjectileArgs Clone()
     {
@@ -16,7 +17,8 @@ public class ProjectileArgs
             Speed = Speed,
             BounceAmount = BounceAmount,
             StartPosition = StartPosition,
-            Direction = Direction
+            Direction = Direction,
+            HomingStrenght = HomingStrenght
         };
     }
 }
@@ -24,5 +26,6 @@ public class ProjectileArgs
 public enum ProjectileTypes
 {
     Straight,
-    Bouncing
+    Bouncing,
+    Homing
 }

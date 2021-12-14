@@ -24,14 +24,14 @@ public class PlayerController : MonoBehaviour
         {
             Type = PatternTypes.Single,
             Direction = Vector2.up,
-            FireRate = 5f
+            FireRate = 3f
         });
 
         mainProjectile = new ProjectileArgs()
         {
-            Type = ProjectileTypes.Bouncing,
-            Speed = 6f,
-            BounceAmount = 10000
+            Type = ProjectileTypes.Homing,
+            Speed = 5f,
+            HomingStrenght = 300
         };
     }
 
