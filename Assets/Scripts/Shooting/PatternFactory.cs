@@ -11,6 +11,8 @@ public static partial class PatternFactory
                 return AttachSingle(parent, args);
             case PatternTypes.Spread:
                 return AttachSpread(parent, args);
+            case PatternTypes.MikicHair:
+                return AttachMikicHair(parent, args);
             default:
                 throw new NotImplementedException($"Pattern Factory for type '{args.Type}' is not implemented");
         }

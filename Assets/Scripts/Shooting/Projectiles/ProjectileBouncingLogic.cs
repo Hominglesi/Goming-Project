@@ -24,6 +24,15 @@ public class ProjectileBouncingLogic : MonoBehaviour
         gameObject.tag = (args.IsPlayerOrigin) ? "PlayerProjectile" : "EnemyProjectile";
 
         BounceAmount = args.BounceAmount;
+
+        if (args.SpritePath != null)
+            gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(args.SpritePath);
+
+        if (args.ColliderSize != null)
+            gameObject.GetComponent<BoxCollider2D>().size = args.ColliderSize;
+
+        if (args.ColliderOffset != null)
+            gameObject.GetComponent<BoxCollider2D>().offset = args.ColliderOffset;
     }
 
     // Update is called once per frame

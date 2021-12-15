@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class MikicStageIntroAnimation : MonoBehaviour, IBossStage
 {
-    public Action OnFinished { get; set; }
-
     float startHeight = 4f;
     float endHeight = -2.5f;
     float speed = 2;
@@ -23,6 +21,7 @@ public class MikicStageIntroAnimation : MonoBehaviour, IBossStage
         var topOfScreen = new Vector2((playfieldBounds.x + playfieldBounds.z)/2, playfieldBounds.y);
         transform.position = topOfScreen + new Vector2(0, startHeight);
         targetPosition = topOfScreen + new Vector2(0, endHeight);
+        transform.rotation = Quaternion.identity;
     }
 
     public void Update()

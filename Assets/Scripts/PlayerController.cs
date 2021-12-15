@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
 
         mainPattern = PatternFactory.AttachComponent(gameObject, new PatternArgs()
         {
-            Type = PatternTypes.Spread,
+            Type = PatternTypes.Single,
             ShotCount = 6,
             Direction = Vector2.up,
             FireRate = 10f
@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnHit()
     {
-        GameHelper.GetUILogic().PlayOof();
+        //GameHelper.GetUILogic().PlayOof();
         GameHelper.GetUILogic().HitsTaken++;
     }
 }

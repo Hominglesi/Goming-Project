@@ -13,6 +13,10 @@ public class MikicBossLogic : MonoBehaviour
     {
         StageComponents.Add(MikicStages.IntroAnimation, GetComponent<MikicStageIntroAnimation>());
         StageComponents.Add(MikicStages.Basic, GetComponent<MikicStageBasic>());
+        StageComponents.Add(MikicStages.Sleeping, GetComponent<MikicStageSleeping>());
+        StageComponents.Add(MikicStages.WakingUp, GetComponent<MikicStageWakingUp>());
+        StageComponents.Add(MikicStages.Enraged, GetComponent<MikicStageEnraged>());
+        StageComponents.Add(MikicStages.EndAnimation, GetComponent<MikicStageEndAnimation>());
 
         SetStage(MikicStages.IntroAnimation);
         gameObject.GetComponent<BulletListener>().OnHit += OnHit;

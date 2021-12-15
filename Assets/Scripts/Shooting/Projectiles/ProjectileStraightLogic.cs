@@ -21,6 +21,16 @@ public class ProjectileStraightLogic : MonoBehaviour
         SetRotation(GameHelper.RotationFromDirection(Direction));
         Speed = args.Speed;
         gameObject.tag = (args.IsPlayerOrigin) ? "PlayerProjectile" : "EnemyProjectile";
+
+        if (args.SpritePath != null)
+            gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(args.SpritePath);
+
+        if (args.CustomCollider == true)
+        {
+            gameObject.GetComponent<BoxCollider2D>().size = args.ColliderSize;
+            gameObject.GetComponent<BoxCollider2D>().offset = args.ColliderOffset;
+        }
+            
     }
 
     // Update is called once per frame

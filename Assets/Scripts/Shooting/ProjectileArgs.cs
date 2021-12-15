@@ -10,6 +10,10 @@ public class ProjectileArgs
     public Vector2 Direction { get; set; }
     public float HomingStrenght { get; set; }
     public bool IsPlayerOrigin { get; set; } = false;
+    public string SpritePath { get; set; }
+    public bool CustomCollider { get; set; } = false;
+    public Vector2 ColliderSize { get; set; }
+    public Vector2 ColliderOffset { get; set; }
 
     public ProjectileArgs Clone()
     {
@@ -22,7 +26,11 @@ public class ProjectileArgs
             StartPositionOffset = StartPositionOffset,
             Direction = Direction,
             HomingStrenght = HomingStrenght,
-            IsPlayerOrigin = IsPlayerOrigin
+            IsPlayerOrigin = IsPlayerOrigin,
+            SpritePath = SpritePath,
+            CustomCollider = CustomCollider,
+            ColliderSize = ColliderSize,
+            ColliderOffset = ColliderOffset
         };
     }
 }

@@ -12,5 +12,6 @@ public enum PatternTypes
 {
     Single,
     Multishot,
-    Spread
+    Spread,
+    MikicHair
 }
