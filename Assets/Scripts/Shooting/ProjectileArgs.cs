@@ -6,6 +6,7 @@ public class ProjectileArgs
     public float Speed { get; set; } = 10f;
     public int BounceAmount { get; set; } = 1;
     public Vector2 StartPosition { get; set; }
+    public float StartPositionOffset { get; set; }
     public Vector2 Direction { get; set; }
     public float HomingStrenght { get; set; }
 
@@ -17,6 +18,7 @@ public class ProjectileArgs
             Speed = Speed,
             BounceAmount = BounceAmount,
             StartPosition = StartPosition,
+            StartPositionOffset = StartPositionOffset,
             Direction = Direction,
             HomingStrenght = HomingStrenght
         };

@@ -61,6 +61,8 @@ public static class GameHelper
 
     public static Vector2 MoveTowards(Vector2 start, Vector2 end, float speed)
     {
+        if (Vector2.Distance(start, end) < speed * Time.deltaTime) return end;
+
         var angle = GetAngleBetweenPoints(start, end);
         return start + (Vector2)(DirectionFromRotation(angle) * speed * Time.deltaTime);
     }

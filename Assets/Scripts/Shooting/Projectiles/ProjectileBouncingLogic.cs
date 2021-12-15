@@ -17,7 +17,9 @@ public class ProjectileBouncingLogic : MonoBehaviour
     public void Initialize(ProjectileArgs args)
     {
         transform.position = args.StartPosition;
+        if (args.StartPositionOffset > 0) transform.position += (Vector3)args.Direction * args.StartPositionOffset;
         Direction = args.Direction;
+        SetRotation(GameHelper.RotationFromDirection(Direction));
         Speed = args.Speed;
 
         BounceAmount = args.BounceAmount;

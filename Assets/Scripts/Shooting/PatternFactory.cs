@@ -9,6 +9,8 @@ public static partial class PatternFactory
         {
             case PatternTypes.Single:
                 return AttachSingle(parent, args);
+            case PatternTypes.Spread:
+                return AttachSpread(parent, args);
             default:
                 throw new NotImplementedException($"Pattern Factory for type '{args.Type}' is not implemented");
         }

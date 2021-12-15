@@ -18,7 +18,8 @@ public class PlayerController : MonoBehaviour
 
         mainPattern = PatternFactory.AttachComponent(gameObject, new PatternArgs()
         {
-            Type = PatternTypes.Single,
+            Type = PatternTypes.Spread,
+            ShotCount = 12,
             Direction = Vector2.up,
             FireRate = 3f
         });
@@ -26,8 +27,7 @@ public class PlayerController : MonoBehaviour
         mainProjectile = new ProjectileArgs()
         {
             Type = ProjectileTypes.Straight,
-            Speed = 8f,
-            HomingStrenght = 300
+            Speed = 8f
         };
     }
 
