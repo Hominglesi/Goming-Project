@@ -13,11 +13,12 @@ public class MikicStageIntroAnimation : MonoBehaviour, IBossStage
     {
         enabled = active;
         if (active) OnAwake();
-        gameObject.GetComponent<MikicBossLogic>().IsDamageable = false;
+        
     }
 
     public void OnAwake()
     {
+        gameObject.GetComponent<MikicBossLogic>().IsDamageable = false;
         var playfieldBounds = GameHelper.PlayfieldBounds;
         var topOfScreen = new Vector2((playfieldBounds.x + playfieldBounds.z)/2, playfieldBounds.y);
         transform.position = topOfScreen + new Vector2(0, startHeight);
@@ -26,7 +27,6 @@ public class MikicStageIntroAnimation : MonoBehaviour, IBossStage
 
     public void Update()
     {
-        Debug.Log(transform.position);
         transform.position = GameHelper.MoveTowards(transform.position, targetPosition, speed);
         if(transform.position == (Vector3)targetPosition)
         {

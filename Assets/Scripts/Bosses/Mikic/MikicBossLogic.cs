@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MikicBossLogic : MonoBehaviour
 {
+    public Action OnDamaged;
     public bool IsDamageable { get; set; }
     private MikicStages CurrentStage { get; set; }
     private Dictionary<MikicStages, IBossStage> StageComponents = new Dictionary<MikicStages, IBossStage>();
@@ -13,6 +15,7 @@ public class MikicBossLogic : MonoBehaviour
         StageComponents.Add(MikicStages.Basic, GetComponent<MikicStageBasic>());
 
         SetStage(MikicStages.IntroAnimation);
+        gameObject.GetComponent<BulletListener>().OnHit += OnHit;
     }
 
     public void SetStage(MikicStages stage)
@@ -28,6 +31,11 @@ public class MikicBossLogic : MonoBehaviour
         stage.SetActive(active);
     }
 
+    private void OnHit()
+    {
+        if (IsDamageable == false) return;
+        OnDamaged?.Invoke();
+    }
 
 }
 

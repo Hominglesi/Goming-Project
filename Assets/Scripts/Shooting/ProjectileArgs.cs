@@ -9,6 +9,7 @@ public class ProjectileArgs
     public float StartPositionOffset { get; set; }
     public Vector2 Direction { get; set; }
     public float HomingStrenght { get; set; }
+    public bool IsPlayerOrigin { get; set; } = false;
 
     public ProjectileArgs Clone()
     {
@@ -20,7 +21,8 @@ public class ProjectileArgs
             StartPosition = StartPosition,
             StartPositionOffset = StartPositionOffset,
             Direction = Direction,
-            HomingStrenght = HomingStrenght
+            HomingStrenght = HomingStrenght,
+            IsPlayerOrigin = IsPlayerOrigin
         };
     }
 }

@@ -15,19 +15,21 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         playfieldBounds = GameHelper.PlayfieldBounds;
+        gameObject.GetComponent<BulletListener>().OnHit += OnHit;
 
         mainPattern = PatternFactory.AttachComponent(gameObject, new PatternArgs()
         {
             Type = PatternTypes.Spread,
-            ShotCount = 12,
+            ShotCount = 6,
             Direction = Vector2.up,
-            FireRate = 3f
+            FireRate = 10f
         });
 
         mainProjectile = new ProjectileArgs()
         {
             Type = ProjectileTypes.Straight,
-            Speed = 8f
+            Speed = 8f,
+            IsPlayerOrigin = true
         };
     }
 
@@ -46,13 +48,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnHit()
     {
-        if(collision.gameObject.tag == "EnemyProjectile")
-        {
-            Destroy(collision.gameObject);
-            GameHelper.GetUILogic().PlayOof();
-            GameHelper.GetUILogic().HitsTaken++;
-        }
+        GameHelper.GetUILogic().PlayOof();
+        GameHelper.GetUILogic().HitsTaken++;
     }
 }

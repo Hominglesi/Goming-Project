@@ -26,6 +26,7 @@ public class ProjectileHomingLogic : MonoBehaviour
         homingStrength = args.HomingStrenght;
         CurrentDirection = args.Direction;
         Speed = args.Speed;
+        gameObject.tag = (args.IsPlayerOrigin) ? "PlayerProjectile" : "EnemyProjectile";
     }
 
     // Update is called once per frame

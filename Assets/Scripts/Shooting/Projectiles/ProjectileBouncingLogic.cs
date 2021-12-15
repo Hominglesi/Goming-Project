@@ -21,6 +21,7 @@ public class ProjectileBouncingLogic : MonoBehaviour
         Direction = args.Direction;
         SetRotation(GameHelper.RotationFromDirection(Direction));
         Speed = args.Speed;
+        gameObject.tag = (args.IsPlayerOrigin) ? "PlayerProjectile" : "EnemyProjectile";
 
         BounceAmount = args.BounceAmount;
     }

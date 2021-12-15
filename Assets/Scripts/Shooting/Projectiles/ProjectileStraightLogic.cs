@@ -20,6 +20,7 @@ public class ProjectileStraightLogic : MonoBehaviour
         Direction = args.Direction;
         SetRotation(GameHelper.RotationFromDirection(Direction));
         Speed = args.Speed;
+        gameObject.tag = (args.IsPlayerOrigin) ? "PlayerProjectile" : "EnemyProjectile";
     }
 
     // Update is called once per frame
