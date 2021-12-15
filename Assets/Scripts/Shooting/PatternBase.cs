@@ -4,6 +4,7 @@ public class PatternBase : MonoBehaviour
 {
     public float FireRate { get; set; }
     private float cooldown;
+    public int ShotNumber { get; set; } = 0;
 
     public void Shoot(ProjectileArgs args)
     {
@@ -11,6 +12,7 @@ public class PatternBase : MonoBehaviour
         {
             OnShoot(args.Clone());
             cooldown = FireRate;
+            ShotNumber++;
         }
     }
 

@@ -6,6 +6,7 @@ public class PatternArgs
     public float FireRate { get; set; }
     public Vector2 Direction { get; set; }
     public int ShotCount { get; set; }
+    public int StageCount { get; set; } = 1;
 }
 
 public enum PatternTypes

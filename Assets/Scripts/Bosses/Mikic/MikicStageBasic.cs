@@ -2,12 +2,13 @@
 public class MikicStageBasic : MonoBehaviour, IBossStage
 {
     PatternBase mainPattern;
+    PatternBase nerfedMainPattern;
     ProjectileArgs mainProjectile;
 
     PatternBase hairPattern;
     ProjectileArgs hairProjectile;
 
-    int maxHealth = 50;
+    int maxHealth = 300;
     int health;
 
     private void Awake()
@@ -31,7 +32,16 @@ public class MikicStageBasic : MonoBehaviour, IBossStage
         {
             Type = PatternTypes.Spread,
             ShotCount = 24,
+            StageCount = 2,
             FireRate = 16f
+        });
+
+        nerfedMainPattern = PatternFactory.AttachComponent(gameObject, new PatternArgs()
+        {
+            Type = PatternTypes.Spread,
+            ShotCount = 12,
+            StageCount = 2,
+            FireRate = 12f
         });
 
         mainProjectile = new ProjectileArgs()
@@ -39,6 +49,9 @@ public class MikicStageBasic : MonoBehaviour, IBossStage
             Type = ProjectileTypes.Straight,
             Speed = 4f,
             StartPositionOffset = 1.5f,
+            SpritePath = "Sprites/mijatovicProjectileBasic",
+            CustomCollider = true,
+            ColliderSize = new Vector2(0.14f, 0.14f),
         };
 
         hairPattern = PatternFactory.AttachComponent(gameObject, new PatternArgs()
@@ -69,11 +82,10 @@ public class MikicStageBasic : MonoBehaviour, IBossStage
 
     public void Update()
     {
-        mainPattern.Shoot(mainProjectile);
-
-        if (health > maxHealth / 2)
+        if (health > maxHealth * 0.66f)
         {
             ProcessMovement();
+            mainPattern.Shoot(mainProjectile);
         }
         else
         {
@@ -82,15 +94,18 @@ public class MikicStageBasic : MonoBehaviour, IBossStage
                 if(hairAttachDone == false && isUpright || hairAttachDone && isUpright == false)
                 {
                     ProcessRotation();
+                    nerfedMainPattern.Shoot(mainProjectile);
                 }
                 else
                 {
                     ProcessHairAttack();
+                    nerfedMainPattern.Shoot(mainProjectile);
                 }
             }
             else
             {
                 ProcessMovement();
+                mainPattern.Shoot(mainProjectile);
                 hairAttackCooldown -= Time.deltaTime;
             }
         }
