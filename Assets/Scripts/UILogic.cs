@@ -57,6 +57,9 @@ public class UILogic : MonoBehaviour
     [SerializeField]
     Text DifficultyDisplay;
 
+    [SerializeField]
+    GameObject PlayArea;
+
     public Transform Background1;
     public Transform Background2;
     public float BackgroundScrollSpeed;
@@ -68,6 +71,7 @@ public class UILogic : MonoBehaviour
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        PlayArea.GetComponent<Image>().color = new Color(0, 0, 0, 0);
     }
 
     public void PlayOof()

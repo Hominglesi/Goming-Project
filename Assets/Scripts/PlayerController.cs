@@ -6,19 +6,15 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField]
-    GameObject playArea;
-
-    [SerializeField]
-    bool hideArea = true;
-
     PatternBase mainPattern;
     ProjectileArgs mainProjectile;
+
+    Vector4 playfieldBounds;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (hideArea) playArea.GetComponent<Image>().color = new Color(0, 0, 0, 0);
+        playfieldBounds = GameHelper.PlayfieldBounds;
 
         mainPattern = PatternFactory.AttachComponent(gameObject, new PatternArgs()
         {
@@ -39,32 +35,15 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         var mousePos = GameHelper.NormalizeVector3(Input.mousePosition);
-        if (IsMouseOverPlayArea(mousePos))
-        {
-            var worldPos = Camera.main.ScreenToWorldPoint(mousePos);
-            transform.position = GameHelper.NormalizeVector3(worldPos);
-        }
+        var worldPos = Camera.main.ScreenToWorldPoint(mousePos);
+        var clampedWorldPos = new Vector3(Mathf.Clamp(worldPos.x, playfieldBounds.x, playfieldBounds.z), Mathf.Clamp(worldPos.y, playfieldBounds.w, playfieldBounds.y));
+        transform.position = clampedWorldPos;
+
 
         if (Input.GetMouseButton(0))
         {
             mainPattern.Shoot(mainProjectile);
         }
-    }
-
-    bool IsMouseOverPlayArea(Vector3 mousePos)
-    {
-        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current)
-        {
-            position = mousePos
-        };
-        List<RaycastResult> results = new List<RaycastResult>();
-        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
-        foreach (var item in results)
-        {
-            if(item.gameObject == playArea) return true;
-        }
-        return false;
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
