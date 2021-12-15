@@ -24,5 +24,6 @@ public class ProjectileStraightLogic : MonoBehaviour
     void Update()
     {
         transform.position += GameHelper.NormalizeVector3(Direction * Speed * Time.deltaTime);
+        if (GameHelper.CheckOffScreen(transform.position, 0.5f)) ProjectileFactory.Destroy(gameObject);
     }
 }

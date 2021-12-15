@@ -29,8 +29,8 @@ public class PlayerController : MonoBehaviour
 
         mainProjectile = new ProjectileArgs()
         {
-            Type = ProjectileTypes.Homing,
-            Speed = 5f,
+            Type = ProjectileTypes.Straight,
+            Speed = 8f,
             HomingStrenght = 300
         };
     }

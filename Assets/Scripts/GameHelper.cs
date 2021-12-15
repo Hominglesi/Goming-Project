@@ -64,4 +64,13 @@ public static class GameHelper
         var angle = GetAngleBetweenPoints(start, end);
         return start + (Vector2)(DirectionFromRotation(angle) * speed * Time.deltaTime);
     }
+
+    public static bool CheckOffScreen(Vector2 position, float leeway = 0)
+    {
+        if (position.x + leeway < PlayfieldBounds.x) return true;
+        if (position.y - leeway > PlayfieldBounds.y) return true;
+        if (position.x - leeway > PlayfieldBounds.z) return true;
+        if (position.y + leeway < PlayfieldBounds.w) return true;
+        return false;
+    }
 }

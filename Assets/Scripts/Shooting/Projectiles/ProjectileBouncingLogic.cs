@@ -28,6 +28,7 @@ public class ProjectileBouncingLogic : MonoBehaviour
     {
         transform.position += GameHelper.NormalizeVector3(Direction * Speed * Time.deltaTime);
         ProccessBouncing();
+        if (GameHelper.CheckOffScreen(transform.position, 1f)) ProjectileFactory.Destroy(gameObject);
     }
 
     void ProccessBouncing()
