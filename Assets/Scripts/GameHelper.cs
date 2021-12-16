@@ -75,4 +75,9 @@ public static class GameHelper
         if (position.y + leeway < PlayfieldBounds.w) return true;
         return false;
     }
+
+    public static float MapValue(float value, float reverenceMin, float referenceMax, float newMin, float newMax)
+    {
+        return newMin + (value - reverenceMin) * (newMax - newMin) / (referenceMax - reverenceMin);
+    }
 }

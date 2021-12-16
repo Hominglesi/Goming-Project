@@ -17,7 +17,6 @@ public class BulletListener : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (isPlayer) Debug.Log("a");
         if(isPlayer && col.tag == "EnemyProjectile" || isPlayer == false && col.tag == "PlayerProjectile")
         {
             ProjectileFactory.Destroy(col.gameObject);
