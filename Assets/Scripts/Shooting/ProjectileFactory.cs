@@ -14,6 +14,8 @@ public static partial class ProjectileFactory
                 return CreateBouncing(args);
             case ProjectileTypes.Homing:
                 return CreateHoming(args);
+            case ProjectileTypes.MikicSleep:
+                return CreateMikicSleep(args);
             default:
                 throw new NotImplementedException($"Projectile Factory for type '{args.Type}' is not implemented");
         }

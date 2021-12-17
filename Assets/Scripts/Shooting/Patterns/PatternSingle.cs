@@ -15,11 +15,11 @@ public class PatternSingle : PatternBase
         direction = args.Direction;
     }
 
-    public override void OnShoot(ProjectileArgs args)
+    public override GameObject[] OnShoot(ProjectileArgs args)
     {
         args.StartPosition = transform.position;
         args.Direction = direction;
-        ProjectileFactory.Create(args);
+        return new GameObject[] { ProjectileFactory.Create(args) };
     }
 }
 

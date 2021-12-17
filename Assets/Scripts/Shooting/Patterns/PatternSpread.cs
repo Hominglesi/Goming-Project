@@ -14,11 +14,12 @@ public class PatternSpread : PatternBase
         stageCount = args.StageCount;
     }
 
-    public override void OnShoot(ProjectileArgs args)
+    public override GameObject[] OnShoot(ProjectileArgs args)
     {
         var spacing = 360f / shotCount;
         var directionOffset = (spacing / stageCount) * (ShotNumber % stageCount);
         var angle = GameHelper.RotationFromDirection(direction) + directionOffset;
+        var output = new GameObject[shotCount];
 
         for (int i = 0; i < shotCount; i++)
         {
@@ -27,9 +28,10 @@ public class PatternSpread : PatternBase
             args.Direction = GameHelper.DirectionFromRotation(shotAngle);
             args.StartPosition = transform.position;
 
-            ProjectileFactory.Create(args);
+            var projectile = ProjectileFactory.Create(args);
+            output[i] = projectile;
         }
-        
+        return output;
     }
 }
 

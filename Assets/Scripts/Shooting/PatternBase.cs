@@ -6,13 +6,17 @@ public class PatternBase : MonoBehaviour
     private float cooldown;
     public int ShotNumber { get; set; } = 0;
 
-    public void Shoot(ProjectileArgs args)
+    public GameObject[] Shoot(ProjectileArgs args)
     {
         if(cooldown <= 0)
         {
-            OnShoot(args.Clone());
             cooldown = FireRate;
             ShotNumber++;
+            return OnShoot(args.Clone());
+        }
+        else
+        {
+            return null;
         }
     }
 
@@ -21,5 +25,5 @@ public class PatternBase : MonoBehaviour
         if (cooldown > 0) cooldown -= Time.deltaTime * 100;
     }
 
-    public virtual void OnShoot(ProjectileArgs args) { }
+    public virtual GameObject[] OnShoot(ProjectileArgs args) { return null; }
 }

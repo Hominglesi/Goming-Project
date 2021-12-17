@@ -14,6 +14,7 @@ public class ProjectileArgs
     public bool CustomCollider { get; set; } = false;
     public Vector2 ColliderSize { get; set; }
     public Vector2 ColliderOffset { get; set; }
+    public Vector2 TargetDestination { get; set; }
 
     public ProjectileArgs Clone()
     {
@@ -30,7 +31,8 @@ public class ProjectileArgs
             SpritePath = SpritePath,
             CustomCollider = CustomCollider,
             ColliderSize = ColliderSize,
-            ColliderOffset = ColliderOffset
+            ColliderOffset = ColliderOffset,
+            TargetDestination = TargetDestination
         };
     }
 }
@@ -39,5 +41,6 @@ public enum ProjectileTypes
 {
     Straight,
     Bouncing,
-    Homing
+    Homing,
+    MikicSleep
 }

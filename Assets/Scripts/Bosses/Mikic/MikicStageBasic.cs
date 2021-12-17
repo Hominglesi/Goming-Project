@@ -8,7 +8,7 @@ public class MikicStageBasic : MonoBehaviour, IBossStage
     PatternBase hairPattern;
     ProjectileArgs hairProjectile;
 
-    int maxHealth = 300;
+    int maxHealth = 15;
     int health;
 
     private void Awake()
@@ -177,7 +177,7 @@ public class MikicStageBasic : MonoBehaviour, IBossStage
         health--;
         if(health <= 0)
         {
-            gameObject.GetComponent<MikicBossLogic>().SetStage(MikicStages.IntroAnimation);
+            gameObject.GetComponent<MikicBossLogic>().SetStage(MikicStages.Sleeping);
         }
     }
 }

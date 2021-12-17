@@ -11,16 +11,20 @@ public class PatternMikicHair : PatternBase
         FireRate = args.FireRate;
     }
 
-    public override void OnShoot(ProjectileArgs args)
+    public override GameObject[] OnShoot(ProjectileArgs args)
     {
         var shotCount = Random.Range(minShots, maxShots+1);
         var points = GeneratePoints(shotCount);
+        var output = new GameObject[shotCount];
         for (int i = 0; i < shotCount; i++)
         {
             args.StartPosition = transform.position + new Vector3(points[i], 0);
             args.Direction = Vector2.down;
-            ProjectileFactory.Create(args);
+            var projectile = ProjectileFactory.Create(args);
+            output[i] = projectile;
         }
+
+        return output;
     }
 
 

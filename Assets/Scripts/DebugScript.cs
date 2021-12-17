@@ -13,17 +13,10 @@ public class DebugScript : MonoBehaviour
 
     private void Update()
     {
-        //Debug.Log(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         if (Input.GetKeyDown(KeyCode.R))
         {
             //SceneManager.LoadScene("LevelSelectScene");
-            var args = new ProjectileArgs()
-            {
-                Type = ProjectileTypes.Bouncing,
-                Speed = 6,
-                BounceAmount = 25
-            };
-            ProjectileFactory.Create(args);
+            ParticleFactory.Create(ParticleType.Explosion, new Vector2(1,1));
         }
     }
 }

@@ -7,9 +7,9 @@ public class ParticleLogic : MonoBehaviour
     SpriteRenderer particleRenderer;
 
     float currentMs = 0;
-    float startAlpha = 0.8f;
-    float introMs = 0.5f;
-    float fadeoutMs = 1.5f;
+    float startAlpha = 0.7f;
+    float introMs = 0.2f;
+    float fadeoutMs = 0.8f;
     // Start is called before the first frame update
     void Start()
     {
