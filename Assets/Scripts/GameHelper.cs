@@ -80,4 +80,9 @@ public static class GameHelper
     {
         return newMin + (value - reverenceMin) * (newMax - newMin) / (referenceMax - reverenceMin);
     }
+
+    public static float NormalizeRotation(float angle)
+    {
+        return angle % 360;
+    }
 }

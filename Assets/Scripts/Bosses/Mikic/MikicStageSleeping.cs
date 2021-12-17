@@ -3,45 +3,52 @@ using UnityEngine;
 
 public class MikicStageSleeping : MonoBehaviour, IBossStage
 {
-    Vector2 middlePosition;
+    Vector2 sleepingPosition;
     float sleepHeight = -2.5f;
     float speed = 1.8f;
     float rotationSpeed = 1f;
-    float rotationT;
-    float targetRotation = -90;
-    float startRotation;
+    float targetRotation = 270;
+
+    MovementRotateTowards rotationMovement;
+    MovementMoveTowards towardsMovement;
 
     public void SetActive(bool active)
     {
+        if (active == false && enabled == true) OnDisabled();
         enabled = active;
         if (active) OnAwake();
     }
 
+    public void OnDisabled()
+    {
+        if (rotationMovement != null) Destroy(rotationMovement);
+        if (towardsMovement != null) Destroy(towardsMovement);
+    }
+
     public void OnAwake()
     {
-        gameObject.GetComponent<MikicBossLogic>().IsDamageable = false;
+        //Setup rotation movement
+        rotationMovement = gameObject.AddComponent<MovementRotateTowards>();
+        rotationMovement.RotationSpeed = rotationSpeed;
+        rotationMovement.TargetRotation = targetRotation;
+
+        //Setup towards movement
+        towardsMovement = gameObject.AddComponent<MovementMoveTowards>();
+        towardsMovement.MovementSpeed = speed;
         var playfieldBounds = GameHelper.PlayfieldBounds;
         var topOfScreen = new Vector2((playfieldBounds.x + playfieldBounds.z) / 2, playfieldBounds.y);
-        middlePosition = topOfScreen + new Vector2(0, sleepHeight);
-        transform.rotation = Quaternion.identity;
-        startRotation = transform.rotation.eulerAngles.z;
-        rotationT = 0;
+        sleepingPosition = topOfScreen + new Vector2(0, sleepHeight);
+        towardsMovement.TargetDestination = sleepingPosition;
+
+        gameObject.GetComponent<MikicBossLogic>().IsDamageable = false;
     }
 
     public void Update()
     {
-        if((Vector2)transform.position != middlePosition)
-        {
-            transform.position = GameHelper.MoveTowards(transform.position, middlePosition, speed);
-        }
-        if(transform.rotation.eulerAngles.z != targetRotation)
-        {
-            float newAngle = Mathf.LerpAngle(startRotation, targetRotation, rotationT);
-            transform.rotation = Quaternion.Euler(0, 0, newAngle);
-            rotationT += rotationSpeed * Time.deltaTime;
-        }
+        var isPositionCorrect = (Vector2)transform.position == sleepingPosition;
+        var isRotationCorrect = GameHelper.NormalizeRotation(transform.rotation.eulerAngles.z) == targetRotation;
 
-        if ((Vector2)transform.position == middlePosition && transform.rotation.eulerAngles.z == targetRotation + 360)
+        if (isPositionCorrect && isRotationCorrect)
         {
             gameObject.GetComponent<MikicBossLogic>().SetStage(MikicStages.WakingUp);
         }

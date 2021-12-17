@@ -19,8 +19,9 @@ public class MikicStageWakingUp : MonoBehaviour, IBossStage
         sleepPattern = (PatternMikicSleep)PatternFactory.AttachComponent(gameObject, new PatternArgs()
         {
             Type = PatternTypes.MikicSleep,
-            FireRate = 10f,
-            ShotCount = 40
+            FireRate = 5f,
+            ShotCount = 40,
+            StageCount = 3
         });
 
         sleepProjectile = new ProjectileArgs()
@@ -34,7 +35,7 @@ public class MikicStageWakingUp : MonoBehaviour, IBossStage
     public void Update()
     {
         sleepPattern.Shoot(sleepProjectile);
-        if(sleepPattern.done == true)
+        if(sleepPattern.IsDone == true)
             gameObject.GetComponent<MikicBossLogic>().SetStage(MikicStages.EndAnimation);
     }
 }

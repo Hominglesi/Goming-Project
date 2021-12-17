@@ -9,9 +9,13 @@ using Random = UnityEngine.Random;
 public class PatternMikicSleep : PatternBase
 {
     public List<GameObject> Projectiles;
+    public int maxProjectiles;
     public int remainingProjectiles;
-    public bool secondPhase;
-    public bool done;
+    public int remainingCycles;
+    public float fireRateDiference = 0.5f;
+    public bool IsDone;
+
+    SleepPhase currentPhase;
 
     Vector4 sleepBounds;
     Vector4 bossBounds;
@@ -20,9 +24,11 @@ public class PatternMikicSleep : PatternBase
     public void Initialize(PatternArgs args)
     {
         FireRate = args.FireRate;
-        secondPhase = false;
-        done = false;
-        remainingProjectiles = args.ShotCount;
+        currentPhase = SleepPhase.Creating;
+        IsDone = false;
+        maxProjectiles = args.ShotCount;
+        remainingProjectiles = maxProjectiles;
+        remainingCycles = args.StageCount;
         var pField = GameHelper.PlayfieldBounds;
         var verticalMiddle = (pField.y + pField.w) / 2;
         sleepBounds = new Vector4(pField.x + padding, pField.y - padding, pField.z - padding, verticalMiddle);
@@ -34,20 +40,24 @@ public class PatternMikicSleep : PatternBase
     public override GameObject[] OnShoot(ProjectileArgs args)
     {
         if (args.Type != ProjectileTypes.MikicSleep) throw new Exception($"PatternMikicSleep only supports being used with projectile type MikicSleep");
-        if (secondPhase == false)
+        if (currentPhase == SleepPhase.Creating)
         {
             args.StartPosition = transform.position;
             args.TargetDestination = GenerateValidPosition();
 
             remainingProjectiles--;
-            if (remainingProjectiles <= 0) secondPhase = true;
+            if (remainingProjectiles <= 0) 
+            {
+                currentPhase = SleepPhase.Shooting;
+                FireRate /= fireRateDiference;
+            } 
 
             var projectile = ProjectileFactory.Create(args);
             Projectiles.Add(projectile);
 
             return new GameObject[] { projectile };
         }
-        else
+        else if(currentPhase == SleepPhase.Shooting)
         {
             if(Projectiles.Count > 0)
             {
@@ -55,7 +65,21 @@ public class PatternMikicSleep : PatternBase
                 Projectiles[randNum].GetComponent<ProjectileMikicSleepLogic>().Activate();
                 Projectiles.RemoveAt(randNum);
 
-                if (Projectiles.Count <= 0) done = true;
+                if (Projectiles.Count <= 0)
+                {
+                    remainingCycles--;
+                    if(remainingCycles <= 0)
+                    {
+                        IsDone = true;
+                    }
+                    else
+                    {
+                        remainingProjectiles = maxProjectiles;
+                        currentPhase = SleepPhase.Creating;
+                        FireRate *= fireRateDiference;
+                    }
+                }
+                
             }
             else
             {
@@ -63,7 +87,7 @@ public class PatternMikicSleep : PatternBase
             }
             return null;
         }
-        
+        return null;
     }
 
     public Vector2 GenerateValidPosition()
@@ -83,3 +107,8 @@ public class PatternMikicSleep : PatternBase
     }
 }
 
+enum SleepPhase
+{
+    Creating,
+    Shooting
+}
