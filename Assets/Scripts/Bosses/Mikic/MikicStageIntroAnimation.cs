@@ -38,7 +38,7 @@ public class MikicStageIntroAnimation : BossStageBase, IBossStage
     {
         if(transform.position == (Vector3)towardsMovement.TargetDestination)
         {
-            gameObject.GetComponent<MikicBossLogic>().SetStage(MikicStages.Basic);
+            gameObject.GetComponent<MikicBossLogic>().SetStage(MikicStages.Sleeping);
         }
         
     }
