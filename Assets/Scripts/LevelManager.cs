@@ -8,6 +8,7 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         var currentLevel = GlobalData.CurrentLevel;
+        /* OLD LOGIC
         var spawner = GetComponent<EnemySpawner>();
         if(currentLevel.Difficulty == Difficulty.Easy)
         {
@@ -16,7 +17,7 @@ public class LevelManager : MonoBehaviour
         else
         {
             spawner.SpawnPattern(new PatternRombus());
-        }
+        }*/
         
         Debug.Log(GlobalData.CurrentLevel.Difficulty);
     }
