@@ -6,6 +6,8 @@ public class PatternBase : MonoBehaviour
     private float cooldown;
     public int ShotNumber { get; set; } = 0;
 
+    public virtual void Initialize(PatternArgs args) { }
+
     public GameObject[] Shoot(ProjectileArgs args)
     {
         if(cooldown <= 0)

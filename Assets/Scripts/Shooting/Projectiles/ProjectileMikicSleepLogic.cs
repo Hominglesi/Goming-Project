@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileMikicSleepLogic : MonoBehaviour
+public class ProjectileMikicSleepLogic : MonoBehaviour, IProjectile
 {
     public Vector2 firstTarget;
     public Vector2 secondDirection;

@@ -12,7 +12,7 @@ public class PatternMikicSleep : PatternBase
     Vector4 bossBounds;
     float padding = 0.3f;
     float bossSize = 2f;
-    public void Initialize(PatternArgs args)
+    public override void Initialize(PatternArgs args)
     {
         FireRate = args.FireRate;
         var pField = GameHelper.PlayfieldBounds;

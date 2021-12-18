@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class ProjectileHomingLogic : MonoBehaviour
+public class ProjectileHomingLogic : MonoBehaviour, IProjectile
 {
     public Vector2 CurrentDirection;
     public float Speed;

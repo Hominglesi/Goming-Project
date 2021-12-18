@@ -6,7 +6,7 @@ public class PatternSpread : PatternBase
     private int shotCount;
     private int stageCount;
 
-    public void Initialize(PatternArgs args)
+    public override void Initialize(PatternArgs args)
     {
         FireRate = args.FireRate;
         direction = args.Direction;

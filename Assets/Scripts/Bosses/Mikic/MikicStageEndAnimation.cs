@@ -30,7 +30,12 @@ public class MikicStageEndAnimation : BossStageBase, IBossStage
         
 
         durationTimer += Time.deltaTime;
-        if(durationTimer > duration) gameObject.GetComponent<MikicBossLogic>().SetStage(MikicStages.IntroAnimation);
+        if (durationTimer > duration)
+        {
+            var mikic = gameObject.GetComponent<MikicBossLogic>();
+            mikic.OnDefeated?.Invoke();
+            Destroy(mikic.gameObject);
+        }
     }
 }
 

@@ -5,6 +5,13 @@ public static partial class PatternFactory
 {
     public static PatternBase AttachComponent(GameObject parent, PatternArgs args)
     {
+        var componentType = Type.GetType("Pattern" + args.Type);
+        
+        var pattern = (PatternBase)parent.AddComponent(componentType);
+        pattern.Initialize(args);
+        return pattern;
+        
+        /*
         switch (args.Type)
         {
             case PatternTypes.Single:
@@ -16,8 +23,8 @@ public static partial class PatternFactory
             case PatternTypes.MikicSleep:
                 return AttachMikicSleep(parent, args);
             default:
-                throw new NotImplementedException($"Pattern Factory for type '{args.Type}' is not implemented");
-        }
+                
+        }*/
     }
 }
 

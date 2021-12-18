@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileStraightLogic : MonoBehaviour
+public class ProjectileStraightLogic : MonoBehaviour, IProjectile
 {
     public Vector2 Direction;
     public float Speed;

@@ -5,6 +5,7 @@ using UnityEngine;
 public class MikicBossLogic : MonoBehaviour, IBossLogic
 {
     public Action OnDamaged;
+    public Action OnDefeated;
     public bool IsDamageable { get; set; }
     private MikicStages CurrentStage { get; set; }
     private Dictionary<MikicStages, IBossStage> StageComponents = new Dictionary<MikicStages, IBossStage>();

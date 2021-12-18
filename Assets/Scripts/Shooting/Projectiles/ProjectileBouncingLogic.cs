@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class ProjectileBouncingLogic : MonoBehaviour
+public class ProjectileBouncingLogic : MonoBehaviour, IProjectile
 {
     public Vector2 Direction;
     public float Speed;

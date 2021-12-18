@@ -83,8 +83,7 @@ public class UILogic : MonoBehaviour
         FPSDisplay.text = ((int)(1f / Time.unscaledDeltaTime)).ToString();
         UpdateBackground(Background1);
         UpdateBackground(Background2);
-        //TODO: uncomment this
-        //DifficultyDisplay.text = GlobalData.CurrentLevel.Difficulty.ToString();
+        DifficultyDisplay.text = GlobalData.CurrentLevel.Difficulty.ToString();
     }
 
     private void UpdateBackground(Transform bg)

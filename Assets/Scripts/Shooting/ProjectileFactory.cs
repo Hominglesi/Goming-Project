@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public static partial class ProjectileFactory
@@ -6,19 +7,29 @@ public static partial class ProjectileFactory
     public static GameObject Create(ProjectileArgs args)
     {
         GameHelper.GetUILogic().Projectiles++;
-        switch (args.Type)
+
+        var prefab = GetPrefab(args.Type.ToString());
+        if(prefab is null) throw new NotImplementedException($"Could not find prefab {args.Type} in directory {projectilePrefabPath}");
+
+        var obj = GameObject.Instantiate(prefab);
+        obj.GetComponent<IProjectile>().Initialize(args);
+
+        return obj;
+    }
+
+    private static Dictionary<string, GameObject> prefabDictionary = new Dictionary<string, GameObject>();
+    private static string projectilePrefabPath = "Prefabs/Projectiles/Projectile";
+    private static GameObject GetPrefab(string name)
+    {
+        if (prefabDictionary.ContainsKey(name)) return prefabDictionary[name];
+        else
         {
-            case ProjectileTypes.Straight: 
-                return CreateStraight(args);
-            case ProjectileTypes.Bouncing:
-                return CreateBouncing(args);
-            case ProjectileTypes.Homing:
-                return CreateHoming(args);
-            case ProjectileTypes.MikicSleep:
-                return CreateMikicSleep(args);
-            default:
-                throw new NotImplementedException($"Projectile Factory for type '{args.Type}' is not implemented");
+            var prefabPath = projectilePrefabPath + name;
+            var prefab = Resources.Load<GameObject>(prefabPath);
+            prefabDictionary.Add(name, prefab);
+            return prefab;
         }
+            
     }
 
     public static void Destroy(GameObject projectile)

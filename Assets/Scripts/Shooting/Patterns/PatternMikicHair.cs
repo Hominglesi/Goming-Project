@@ -6,7 +6,7 @@ public class PatternMikicHair : PatternBase
     int maxShots = 3;
     float shotRange = 2.3f;
     float minimumDistance = 0.8f;
-    public void Initialize(PatternArgs args)
+    public override void Initialize(PatternArgs args)
     {
         FireRate = args.FireRate;
     }
