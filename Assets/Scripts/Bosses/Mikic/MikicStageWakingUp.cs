@@ -1,33 +1,27 @@
 ﻿using System;
 using UnityEngine;
 
-public class MikicStageWakingUp : MonoBehaviour, IBossStage
+public class MikicStageWakingUp : BossStageBase, IBossStage
 {
     PatternMikicSleep sleepPattern;
     ProjectileArgs sleepProjectile;
 
-    public void SetActive(bool active)
+    public override void OnAwake()
     {
-        enabled = active;
-        if (active) OnAwake();
-    }
-
-    public void OnAwake()
-    {
-        gameObject.GetComponent<MikicBossLogic>().IsDamageable = false;
+        IsDamagable = false;
 
         sleepPattern = (PatternMikicSleep)PatternFactory.AttachComponent(gameObject, new PatternArgs()
         {
             Type = PatternTypes.MikicSleep,
-            FireRate = 5f,
-            ShotCount = 40,
+            FireRate = 6f,
+            ShotCount = 50,
             StageCount = 3
         });
 
         sleepProjectile = new ProjectileArgs()
         {
             Type = ProjectileTypes.MikicSleep,
-            Speed = 6,
+            Speed = 8,
             StartPositionOffset = 1.5f,
         };
     }
@@ -36,6 +30,6 @@ public class MikicStageWakingUp : MonoBehaviour, IBossStage
     {
         sleepPattern.Shoot(sleepProjectile);
         if(sleepPattern.IsDone == true)
-            gameObject.GetComponent<MikicBossLogic>().SetStage(MikicStages.EndAnimation);
+            gameObject.GetComponent<MikicBossLogic>().SetStage(MikicStages.Enraged);
     }
 }

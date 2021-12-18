@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MikicBossLogic : MonoBehaviour
+public class MikicBossLogic : MonoBehaviour, IBossLogic
 {
     public Action OnDamaged;
     public bool IsDamageable { get; set; }

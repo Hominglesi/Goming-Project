@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-public class MikicStageBasic : MonoBehaviour, IBossStage
+public class MikicStageBasic : BossStageBase, IBossStage
 {
     PatternBase mainPattern;
     PatternBase nerfedMainPattern;
@@ -11,35 +11,30 @@ public class MikicStageBasic : MonoBehaviour, IBossStage
     MovementDvdLogo dvdMovement;
     MovementRotateTowards rotationMovement;
 
-    int maxHealth = 15;
+    int maxHealth = 100;
     int health;
     float rotationSpeed = 1;
 
     private void Awake()
     {
+        dvdMovement = GetComponent<MovementDvdLogo>();
+        rotationMovement = GetComponent<MovementRotateTowards>();
+    }
+
+    public override void OnDisabled()
+    {
+        dvdMovement.enabled = false;
+        rotationMovement.enabled = false;
+        gameObject.GetComponent<MikicBossLogic>().OnDamaged -= OnDamaged;
+    }
+
+    public override void OnAwake()
+    {
+        IsDamagable = true;
         gameObject.GetComponent<MikicBossLogic>().OnDamaged += OnDamaged;
-    }
-
-    public void SetActive(bool active)
-    {
-        if (active == false && enabled == true) OnDisabled();
-        enabled = active;
-        if (active) OnAwake();
-        
-    }
-
-    public void OnDisabled()
-    {
-        if (dvdMovement != null) Destroy(dvdMovement);
-        if (rotationMovement != null) Destroy(rotationMovement);
-    }
-
-    public void OnAwake()
-    {
-        gameObject.GetComponent<MikicBossLogic>().IsDamageable = true;
 
         //Setup Dvd Movement
-        dvdMovement = gameObject.AddComponent<MovementDvdLogo>();
+        dvdMovement.enabled = true;
         dvdMovement.Speed = 1f;
         var dvdOffset = 1.5f;
         var bounds = GameHelper.PlayfieldBounds;
@@ -47,7 +42,7 @@ public class MikicStageBasic : MonoBehaviour, IBossStage
         dvdMovement.Bounds = new Vector4(bounds.x + dvdOffset, bounds.y - dvdOffset, bounds.z - dvdOffset, horizontalMid + dvdOffset);
 
         //Setup Rotation Movement
-        rotationMovement = gameObject.AddComponent<MovementRotateTowards>();
+        rotationMovement.enabled = true;
         rotationMovement.RotationSpeed = rotationSpeed;
         rotationMovement.TargetRotation = 0;
 

@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnHit()
     {
-        //GameHelper.GetUILogic().PlayOof();
+        GameHelper.GetUILogic().PlayOof();
         GameHelper.GetUILogic().HitsTaken++;
     }
 }

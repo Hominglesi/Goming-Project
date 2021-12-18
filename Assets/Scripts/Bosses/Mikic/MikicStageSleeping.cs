@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class MikicStageSleeping : MonoBehaviour, IBossStage
+public class MikicStageSleeping : BossStageBase, IBossStage
 {
     Vector2 sleepingPosition;
     float sleepHeight = -2.5f;
@@ -12,35 +12,34 @@ public class MikicStageSleeping : MonoBehaviour, IBossStage
     MovementRotateTowards rotationMovement;
     MovementMoveTowards towardsMovement;
 
-    public void SetActive(bool active)
+    private void Awake()
     {
-        if (active == false && enabled == true) OnDisabled();
-        enabled = active;
-        if (active) OnAwake();
+        rotationMovement = GetComponent<MovementRotateTowards>();
+        towardsMovement = GetComponent<MovementMoveTowards>();
     }
 
-    public void OnDisabled()
+    public override void OnDisabled()
     {
-        if (rotationMovement != null) Destroy(rotationMovement);
-        if (towardsMovement != null) Destroy(towardsMovement);
+        rotationMovement.enabled = false;
+        towardsMovement.enabled = true;
     }
 
-    public void OnAwake()
+    public override void OnAwake()
     {
         //Setup rotation movement
-        rotationMovement = gameObject.AddComponent<MovementRotateTowards>();
+        rotationMovement.enabled = true;
         rotationMovement.RotationSpeed = rotationSpeed;
         rotationMovement.TargetRotation = targetRotation;
 
         //Setup towards movement
-        towardsMovement = gameObject.AddComponent<MovementMoveTowards>();
+        towardsMovement.enabled = true;
         towardsMovement.MovementSpeed = speed;
         var playfieldBounds = GameHelper.PlayfieldBounds;
         var topOfScreen = new Vector2((playfieldBounds.x + playfieldBounds.z) / 2, playfieldBounds.y);
         sleepingPosition = topOfScreen + new Vector2(0, sleepHeight);
         towardsMovement.TargetDestination = sleepingPosition;
 
-        gameObject.GetComponent<MikicBossLogic>().IsDamageable = false;
+        IsDamagable = false;
     }
 
     public void Update()

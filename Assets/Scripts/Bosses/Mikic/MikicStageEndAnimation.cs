@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class MikicStageEndAnimation : MonoBehaviour, IBossStage
+public class MikicStageEndAnimation : BossStageBase, IBossStage
 {
     float duration = 3f;
     float durationTimer;
@@ -10,15 +10,9 @@ public class MikicStageEndAnimation : MonoBehaviour, IBossStage
     float exposionRate = 0.12f;
     float exposionTimer;
 
-    public void SetActive(bool active)
+    public override void OnAwake()
     {
-        enabled = active;
-        if (active) OnAwake();
-    }
-
-    public void OnAwake()
-    {
-        gameObject.GetComponent<MikicBossLogic>().IsDamageable = false;
+        IsDamagable = false;
         durationTimer = 0;
         exposionTimer = 0;
     }

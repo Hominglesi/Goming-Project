@@ -1,33 +1,42 @@
 ﻿using System;
 using UnityEngine;
 
-public class MikicStageIntroAnimation : MonoBehaviour, IBossStage
+public class MikicStageIntroAnimation : BossStageBase, IBossStage
 {
     float startHeight = 4f;
     float endHeight = -2.5f;
     float speed = 2;
-    Vector2 targetPosition;
-    public void SetActive(bool active)
+
+    MovementMoveTowards towardsMovement;
+
+    private void Awake()
     {
-        enabled = active;
-        if (active) OnAwake();
-        
+        towardsMovement = GetComponent<MovementMoveTowards>();
     }
 
-    public void OnAwake()
+    public override void OnDisabled()
     {
-        gameObject.GetComponent<MikicBossLogic>().IsDamageable = false;
-        var playfieldBounds = GameHelper.PlayfieldBounds;
-        var topOfScreen = new Vector2((playfieldBounds.x + playfieldBounds.z)/2, playfieldBounds.y);
-        transform.position = topOfScreen + new Vector2(0, startHeight);
-        targetPosition = topOfScreen + new Vector2(0, endHeight);
+        towardsMovement.enabled = false;
+    }
+
+    public override void OnAwake()
+    {
+        IsDamagable = false;
         transform.rotation = Quaternion.identity;
+
+        //Setup towards movement
+        towardsMovement.enabled = true;
+        var playfieldBounds = GameHelper.PlayfieldBounds;
+        var topOfScreen = new Vector2((playfieldBounds.x + playfieldBounds.z) / 2, playfieldBounds.y);
+        towardsMovement.TargetDestination = topOfScreen + new Vector2(0, endHeight);
+        towardsMovement.MovementSpeed = speed;
+
+        transform.position = topOfScreen + new Vector2(0, startHeight);
     }
 
     public void Update()
     {
-        transform.position = GameHelper.MoveTowards(transform.position, targetPosition, speed);
-        if(transform.position == (Vector3)targetPosition)
+        if(transform.position == (Vector3)towardsMovement.TargetDestination)
         {
             gameObject.GetComponent<MikicBossLogic>().SetStage(MikicStages.Basic);
         }
