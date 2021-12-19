@@ -13,10 +13,17 @@ public class DebugScript : MonoBehaviour
 
     private void Update()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.R))
         {
-            //SceneManager.LoadScene("LevelSelectScene");
-            ParticleFactory.Create(ParticleType.Explosion, new Vector2(1,1));
-        }
+            if (SceneManager.GetActiveScene().name == "GameScene")
+            {
+                SceneManager.LoadScene("ScreenSizeTestScreen");
+            }
+            else
+            {
+                SceneManager.LoadScene("GameScene");
+            }
+        }*/
     }
 }

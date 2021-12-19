@@ -13,12 +13,15 @@ public class LevelManager : MonoBehaviour
     float exitTime = 3f;
     float exitTimer;
 
-    UILogic uiLogic;
+    float maxSpeed = 40;
+    float minSpeed = 5;
+
+    LevelVisualsManager visualsManager;
     // Start is called before the first frame update
     void Start()
     {
         currentState = LevelState.Intro;
-        uiLogic = GameHelper.GetUILogic();
+        visualsManager = GetComponent<LevelVisualsManager>();
     }
 
     // Update is called once per frame
@@ -27,11 +30,11 @@ public class LevelManager : MonoBehaviour
         
         if (currentState == LevelState.Intro)
         {
-            uiLogic.BackgroundScrollSpeed = GameHelper.MapValue(introTimer, 0, introTime, 20f, 2.5f);
+            visualsManager.BackgroundScrollSpeed = GameHelper.MapValue(introTimer, 0, introTime, maxSpeed, minSpeed);
             introTimer += Time.deltaTime;
             if(introTimer >= introTime)
             {
-                uiLogic.BackgroundScrollSpeed = 2.5f;
+                visualsManager.BackgroundScrollSpeed = 2.5f;
                 currentState = LevelState.Playing;
             }
         }
@@ -49,7 +52,7 @@ public class LevelManager : MonoBehaviour
         }
         else if (currentState == LevelState.Outro)
         {
-            uiLogic.BackgroundScrollSpeed = GameHelper.MapValue(exitTimer, 0, exitTime, 2.5f, 20f);
+            visualsManager.BackgroundScrollSpeed = GameHelper.MapValue(exitTimer, 0, exitTime, minSpeed, maxSpeed);
             exitTimer += Time.deltaTime;
             if (exitTimer >= exitTime)
             {
