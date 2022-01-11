@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UILogic : MonoBehaviour
 {
     [SerializeField]
-    Text HitsTakenDisplay;
+    TextMeshProUGUI HitsTakenDisplay;
     int _hitsTaken;
     public int HitsTaken { get {
             return _hitsTaken;
@@ -14,12 +15,13 @@ public class UILogic : MonoBehaviour
         set
         {
             _hitsTaken = value;
-            HitsTakenDisplay.text = _hitsTaken.ToString();
+            if(HitsTakenDisplay != null)
+                HitsTakenDisplay.text = _hitsTaken.ToString();
         }
     }
 
     [SerializeField]
-    Text EnemiesDefeatedDisplay;
+    TextMeshProUGUI EnemiesDefeatedDisplay;
     int _enemiesDefeated;
     public int EnemiesDefeated
     {
@@ -30,12 +32,13 @@ public class UILogic : MonoBehaviour
         set
         {
             _enemiesDefeated = value;
-            EnemiesDefeatedDisplay.text = _enemiesDefeated.ToString();
+            if(EnemiesDefeatedDisplay != null)
+                EnemiesDefeatedDisplay.text = _enemiesDefeated.ToString();
         }
     }
 
     [SerializeField]
-    Text ProjectilesDisplay;
+    TextMeshProUGUI ProjectilesDisplay;
     int _projectiles;
     public int Projectiles
     {
@@ -52,13 +55,10 @@ public class UILogic : MonoBehaviour
     }
 
     [SerializeField]
-    Text FPSDisplay;
+    TextMeshProUGUI FPSDisplay;
 
     [SerializeField]
-    Text DifficultyDisplay;
-
-    [SerializeField]
-    GameObject PlayArea;
+    TextMeshProUGUI DifficultyDisplay;
 
     public RectTransform PlayfieldTransform;
 
@@ -67,7 +67,6 @@ public class UILogic : MonoBehaviour
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        PlayArea.GetComponent<Image>().color = new Color(0, 0, 0, 0);
     }
 
     public void PlayOof()
@@ -76,7 +75,9 @@ public class UILogic : MonoBehaviour
     }
     private void Update()
     {
-        FPSDisplay.text = ((int)(1f / Time.unscaledDeltaTime)).ToString();
-        DifficultyDisplay.text = GlobalData.CurrentLevel.Difficulty.ToString();
+        if(FPSDisplay != null)
+            FPSDisplay.text = ((int)(1f / Time.unscaledDeltaTime)).ToString();
+        if(DifficultyDisplay != null)
+            DifficultyDisplay.text = GlobalData.CurrentLevel.Difficulty.ToString();
     }
 }
